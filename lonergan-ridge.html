@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Lonergan Ridge — A Private Estate Above the Lake</title>
+<meta name="description" content="A modern architectural estate with rare panoramic views of private 150-acre Lake Lonergan. Listed at $2,485,000." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..500&family=Geist:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #1a1a1a;
+  --char: #2c2c2c;
+  --stone: #6b6b68;
+  --mist: #a8a8a4;
+  --line: #e2e0da;
+  --bone: #f1efe9;
+  --paper: #faf8f3;
+  --white: #ffffff;
+  --max: 1200px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Geist', -apple-system, sans-serif;
+  background: var(--paper);
+  color: var(--ink);
+  line-height: 1.6;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+}
+
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+
+/* ============== NAV ============== */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 1.25rem 2.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(250, 248, 243, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.nav-brand {
+  font-family: 'Fraunces', serif;
+  font-size: 1.2rem;
+  font-weight: 400;
+  letter-spacing: -0.005em;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2.25rem;
+  font-size: 0.875rem;
+  color: var(--stone);
+  font-weight: 400;
+}
+
+.nav-links a { transition: color 0.2s; }
+.nav-links a:hover { color: var(--ink); }
+
+.nav-cta {
+  font-size: 0.875rem;
+  color: var(--ink);
+  border-bottom: 1px solid var(--ink);
+  padding-bottom: 2px;
+  transition: opacity 0.2s;
+}
+
+.nav-cta:hover { opacity: 0.6; }
+
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  nav { padding: 1rem 1.5rem; }
+}
+
+/* ============== HERO ============== */
+.hero {
+  height: 92vh;
+  min-height: 600px;
+  position: relative;
+  background-image: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.6) 100%),
+    url('https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&w=2400');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: flex-end;
+  color: var(--paper);
+}
+
+.hero-content {
+  width: 100%;
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 0 2.5rem 4rem;
+}
+
+.hero-eyebrow {
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+  margin-bottom: 1.5rem;
+  opacity: 0.85;
+}
+
+.hero h1 {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(2.5rem, 5.5vw, 4.5rem);
+  font-weight: 300;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  margin-bottom: 2.5rem;
+  max-width: 850px;
+}
+
+.hero-meta {
+  display: flex;
+  gap: 3.5rem;
+  flex-wrap: wrap;
+  border-top: 1px solid rgba(255,255,255,0.25);
+  padding-top: 1.5rem;
+  font-size: 0.95rem;
+}
+
+.hero-meta span { opacity: 0.95; }
+
+@media (max-width: 768px) {
+  .hero { height: auto; min-height: 85vh; padding-top: 5rem; }
+  .hero-content { padding: 0 1.5rem 2.5rem; }
+  .hero-meta { gap: 1.25rem 2rem; padding-top: 1.25rem; font-size: 0.85rem; }
+}
+
+/* ============== SECTIONS ============== */
+section {
+  padding: 6rem 2.5rem;
+  max-width: var(--max);
+  margin: 0 auto;
+}
+
+@media (max-width: 768px) { section { padding: 4rem 1.5rem; } }
+
+.eyebrow {
+  font-size: 0.85rem;
+  color: var(--stone);
+  margin-bottom: 1.25rem;
+}
+
+.title {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(1.875rem, 4vw, 3rem);
+  font-weight: 300;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin-bottom: 0;
+  max-width: 900px;
+}
+
+/* ============== INTRO ============== */
+.intro { max-width: 720px; }
+
+.intro .title { margin-bottom: 2.25rem; }
+
+.intro p {
+  font-size: 1.0625rem;
+  line-height: 1.7;
+  color: var(--char);
+  margin-bottom: 1.25rem;
+}
+
+.intro p:last-child { margin-bottom: 0; }
+
+/* ============== KEY DETAILS BAR ============== */
+.details-bar {
+  background: var(--bone);
+  padding: 3rem 2.5rem;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.details-inner {
+  max-width: var(--max);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+}
+
+.detail-label {
+  font-size: 0.8rem;
+  color: var(--stone);
+  margin-bottom: 0.4rem;
+}
+
+.detail-value {
+  font-family: 'Fraunces', serif;
+  font-size: 1.375rem;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+@media (max-width: 768px) {
+  .details-bar { padding: 2rem 1.5rem; }
+  .details-inner { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+  .detail-value { font-size: 1.15rem; }
+}
+
+/* ============== GALLERY ============== */
+.gallery-section { padding-top: 0; padding-bottom: 0; }
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 0.75rem;
+  padding-top: 6rem;
+}
+
+.gallery-item {
+  overflow: hidden;
+  background: var(--bone);
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.gallery-item:hover img { transform: scale(1.04); }
+
+.g-1 { grid-column: span 8; aspect-ratio: 16 / 10; }
+.g-2 { grid-column: span 4; aspect-ratio: 4 / 5; }
+.g-3 { grid-column: span 4; aspect-ratio: 1 / 1; }
+.g-4 { grid-column: span 4; aspect-ratio: 1 / 1; }
+.g-5 { grid-column: span 4; aspect-ratio: 1 / 1; }
+.g-6 { grid-column: span 12; aspect-ratio: 21 / 9; }
+.g-7 { grid-column: span 7; aspect-ratio: 4 / 3; }
+.g-8 { grid-column: span 5; aspect-ratio: 4 / 3; }
+
+@media (max-width: 768px) {
+  .gallery { grid-template-columns: repeat(2, 1fr); gap: 0.5rem; padding-top: 4rem; }
+  .g-1, .g-2, .g-3, .g-4, .g-5, .g-6, .g-7, .g-8 {
+    grid-column: span 2; aspect-ratio: 4 / 3;
+  }
+}
+
+/* ============== FEATURES ============== */
+.features-section { padding: 6rem 2.5rem; max-width: var(--max); margin: 0 auto; }
+
+.features-section .title { margin-bottom: 3rem; }
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2.5rem 3.5rem;
+}
+
+.feature h3 {
+  font-family: 'Fraunces', serif;
+  font-size: 1.3rem;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  margin-bottom: 0.6rem;
+}
+
+.feature p {
+  font-size: 0.95rem;
+  color: var(--stone);
+  line-height: 1.6;
+}
+
+@media (max-width: 900px) {
+  .features-grid { grid-template-columns: repeat(2, 1fr); gap: 2.25rem; }
+}
+
+@media (max-width: 600px) {
+  .features-section { padding: 4rem 1.5rem; }
+  .features-grid { grid-template-columns: 1fr; gap: 1.75rem; }
+}
+
+/* ============== SETTING ============== */
+.setting {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: stretch;
+  min-height: 480px;
+}
+
+.setting-image {
+  background-size: cover;
+  background-position: center;
+}
+
+.setting-text {
+  padding: 4.5rem 4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: var(--paper);
+}
+
+.setting-text .title { margin-bottom: 1.75rem; }
+
+.setting-text p {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--char);
+  margin-bottom: 1rem;
+  max-width: 460px;
+}
+
+@media (max-width: 900px) {
+  .setting { grid-template-columns: 1fr; }
+  .setting-image { aspect-ratio: 4 / 3; }
+  .setting-text { padding: 3rem 1.5rem; }
+}
+
+/* ============== LOCATION ============== */
+.location {
+  background: var(--ink);
+  color: var(--paper);
+  padding: 6rem 2.5rem;
+}
+
+.location-inner { max-width: var(--max); margin: 0 auto; }
+
+.location .eyebrow { color: rgba(255,255,255,0.55); }
+.location .title { color: var(--paper); margin-bottom: 3rem; }
+
+.points {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2.5rem;
+}
+
+.point-time {
+  font-family: 'Fraunces', serif;
+  font-size: 2.25rem;
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.5rem;
+  line-height: 1;
+}
+
+.point h4 {
+  font-family: 'Fraunces', serif;
+  font-size: 1.125rem;
+  font-weight: 400;
+  margin-bottom: 0.35rem;
+  margin-top: 0.6rem;
+  letter-spacing: -0.005em;
+}
+
+.point p {
+  font-size: 0.875rem;
+  color: rgba(255,255,255,0.65);
+  line-height: 1.55;
+}
+
+@media (max-width: 768px) {
+  .location { padding: 4rem 1.5rem; }
+  .points { grid-template-columns: repeat(2, 1fr); gap: 2rem; }
+}
+
+/* ============== AGENT / CONTACT ============== */
+.contact-section { padding: 6rem 2.5rem; max-width: var(--max); margin: 0 auto; }
+
+.contact-section .title { margin-bottom: 3rem; }
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: start;
+}
+
+.agent-photo {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  background-size: cover;
+  background-position: center;
+  margin-bottom: 1.75rem;
+}
+
+.agent-name {
+  font-family: 'Fraunces', serif;
+  font-size: 1.875rem;
+  font-weight: 400;
+  letter-spacing: -0.015em;
+  margin-bottom: 0.25rem;
+}
+
+.agent-title {
+  font-size: 0.9rem;
+  color: var(--stone);
+  margin-bottom: 1.5rem;
+}
+
+.agent-bio {
+  font-size: 0.975rem;
+  line-height: 1.7;
+  color: var(--char);
+  margin-bottom: 1.75rem;
+}
+
+.agent-contact {
+  border-top: 1px solid var(--line);
+  padding-top: 1.25rem;
+  font-size: 0.95rem;
+  line-height: 1.85;
+}
+
+.agent-contact div { color: var(--char); }
+
+/* form */
+form {
+  background: var(--bone);
+  padding: 2.5rem;
+}
+
+form h3 {
+  font-family: 'Fraunces', serif;
+  font-size: 1.625rem;
+  font-weight: 400;
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.015em;
+}
+
+form > p {
+  color: var(--stone);
+  font-size: 0.9rem;
+  line-height: 1.6;
+  margin-bottom: 1.75rem;
+}
+
+.form-group { margin-bottom: 1rem; }
+
+.form-group label {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--stone);
+  margin-bottom: 0.4rem;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+  width: 100%;
+  padding: 0.75rem 0.9rem;
+  border: 1px solid var(--line);
+  background: var(--white);
+  font-family: 'Geist', sans-serif;
+  font-size: 0.95rem;
+  color: var(--ink);
+  transition: border-color 0.2s;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: var(--ink);
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 90px;
+  font-family: 'Geist', sans-serif;
+}
+
+.form-submit {
+  width: 100%;
+  padding: 0.95rem;
+  background: var(--ink);
+  color: var(--paper);
+  border: none;
+  font-family: 'Geist', sans-serif;
+  font-size: 0.95rem;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background 0.2s;
+  margin-top: 0.75rem;
+}
+
+.form-submit:hover { background: var(--char); }
+
+@media (max-width: 900px) {
+  .contact-section { padding: 4rem 1.5rem; }
+  .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+  form { padding: 1.75rem 1.5rem; }
+}
+
+/* ============== FOOTER ============== */
+footer {
+  background: var(--ink);
+  color: var(--paper);
+  padding: 3.5rem 2.5rem 1.75rem;
+}
+
+.footer-inner {
+  max-width: var(--max);
+  margin: 0 auto;
+}
+
+.footer-top {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 3rem;
+  padding-bottom: 2.5rem;
+  border-bottom: 1px solid rgba(255,255,255,0.12);
+  margin-bottom: 1.75rem;
+}
+
+.footer-brand {
+  font-family: 'Fraunces', serif;
+  font-size: 1.5rem;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  margin-bottom: 0.5rem;
+}
+
+.footer-tagline {
+  font-size: 0.875rem;
+  color: rgba(255,255,255,0.55);
+  max-width: 380px;
+  line-height: 1.6;
+}
+
+.footer-col h5 {
+  font-size: 0.85rem;
+  margin-bottom: 0.85rem;
+  color: rgba(255,255,255,0.5);
+  font-weight: 400;
+}
+
+.footer-col ul { list-style: none; }
+.footer-col li { margin-bottom: 0.4rem; font-size: 0.875rem; color: rgba(255,255,255,0.85); }
+.footer-col a { transition: color 0.2s; }
+.footer-col a:hover { color: var(--paper); }
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.4);
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.spec-note {
+  background: rgba(255,255,255,0.04);
+  padding: 1rem 1.25rem;
+  margin-top: 1.5rem;
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.55);
+  line-height: 1.6;
+}
+
+.spec-note strong { color: rgba(255,255,255,0.75); font-weight: 500; }
+
+@media (max-width: 768px) {
+  .footer-top { grid-template-columns: 1fr; gap: 1.75rem; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-brand">Lonergan Ridge</div>
+  <div class="nav-links">
+    <a href="#residence">Residence</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#location">Location</a>
+    <a href="#agent">Agent</a>
+  </div>
+  <a href="#contact" class="nav-cta">Schedule a tour</a>
+</nav>
+
+<header class="hero">
+  <div class="hero-content">
+    <div class="hero-eyebrow">Now offered — Omaha, Nebraska</div>
+    <h1>A private estate above a 150-acre lake.</h1>
+    <div class="hero-meta">
+      <span>5 Beds</span>
+      <span>6 Baths</span>
+      <span>6,840 Sq Ft</span>
+      <span>0.94 Acres</span>
+      <span>$2,485,000</span>
+    </div>
+  </div>
+</header>
+
+<section id="residence">
+  <div class="intro">
+    <div class="eyebrow">The Residence</div>
+    <h2 class="title">A masterclass in private, versatile living — designed around the view.</h2>
+    <p>Set on nearly an acre of sloping ridge, this newly built estate offers what almost no home in Nebraska can: rare, panoramic views of a private 150-acre lake. The architecture is deliberate and quiet. Glass meets stone. Cantilevered decks meet open prairie. Every primary room frames water.</p>
+    <p>The entire upper level is reserved as the Owners' Wing — a private retreat with sweeping lake views, a spa-grade bathroom, and direct access to a cantilevered terrace built for sunsets. The main level is given over to gathering: a chef's kitchen with paneled appliances, a great room anchored by a stone hearth, and a covered loggia that opens to an expanded lawn.</p>
+  </div>
+</section>
+
+<div class="details-bar">
+  <div class="details-inner">
+    <div>
+      <div class="detail-label">Year Built</div>
+      <div class="detail-value">2024</div>
+    </div>
+    <div>
+      <div class="detail-label">Lake Frontage</div>
+      <div class="detail-value">185 ft</div>
+    </div>
+    <div>
+      <div class="detail-label">Garage</div>
+      <div class="detail-value">3 cars, heated</div>
+    </div>
+    <div>
+      <div class="detail-label">Annual Taxes</div>
+      <div class="detail-value">$32,400</div>
+    </div>
+  </div>
+</div>
+
+<section id="gallery" class="gallery-section">
+  <div class="gallery">
+    <div class="gallery-item g-1">
+      <img src="https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&w=2000" alt="Modern luxury home exterior" loading="lazy" />
+    </div>
+    <div class="gallery-item g-2">
+      <img src="https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=1400" alt="Open-concept living room" loading="lazy" />
+    </div>
+    <div class="gallery-item g-3">
+      <img src="https://images.pexels.com/photos/2724748/pexels-photo-2724748.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Designer kitchen" loading="lazy" />
+    </div>
+    <div class="gallery-item g-4">
+      <img src="https://images.pexels.com/photos/6585601/pexels-photo-6585601.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Marble primary bathroom" loading="lazy" />
+    </div>
+    <div class="gallery-item g-5">
+      <img src="https://images.pexels.com/photos/6444366/pexels-photo-6444366.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Master bedroom suite" loading="lazy" />
+    </div>
+    <div class="gallery-item g-6">
+      <img src="https://images.pexels.com/photos/1438834/pexels-photo-1438834.jpeg?auto=compress&cs=tinysrgb&w=2400" alt="Lake view at golden hour" loading="lazy" />
+    </div>
+    <div class="gallery-item g-7">
+      <img src="https://images.pexels.com/photos/261327/pexels-photo-261327.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="Outdoor terrace" loading="lazy" />
+    </div>
+    <div class="gallery-item g-8">
+      <img src="https://images.pexels.com/photos/1080696/pexels-photo-1080696.jpeg?auto=compress&cs=tinysrgb&w=1400" alt="Dining room" loading="lazy" />
+    </div>
+  </div>
+</section>
+
+<div class="features-section">
+  <div class="eyebrow">Considered Details</div>
+  <h2 class="title">Crafted across four years.</h2>
+  <div class="features-grid">
+    <div class="feature">
+      <h3>Owners' Wing</h3>
+      <p>The full upper level is dedicated to a single primary suite, with two walk-in closets, a wet room with steam, and a cantilevered terrace facing west.</p>
+    </div>
+    <div class="feature">
+      <h3>Chef's Kitchen</h3>
+      <p>Sub-Zero, Wolf, and a 14-foot Calacatta island. Two dishwashers, a butler's pantry, and a paneled appliance program throughout.</p>
+    </div>
+    <div class="feature">
+      <h3>Lake-Side Loggia</h3>
+      <p>A covered outdoor room with linear gas fireplace, retractable screens, and a built-in grill. Designed for nine-month use.</p>
+    </div>
+    <div class="feature">
+      <h3>Lower Level</h3>
+      <p>A walkout level with a 14-seat home theater, an 800-bottle wine cellar, gym, and a guest suite with its own private entry.</p>
+    </div>
+    <div class="feature">
+      <h3>Smart Architecture</h3>
+      <p>Whole-home Lutron lighting, Sonos audio, Cat6 throughout, three-zone climate, and a backup generator.</p>
+    </div>
+    <div class="feature">
+      <h3>Land &amp; Privacy</h3>
+      <p>Adjacent to the multi-million-dollar Curt Hofer estates of The Haven, ensuring sightlines and property values remain protected.</p>
+    </div>
+  </div>
+</div>
+
+<div class="setting">
+  <div class="setting-image" style="background-image:url('https://images.pexels.com/photos/2096983/pexels-photo-2096983.jpeg?auto=compress&cs=tinysrgb&w=1600');"></div>
+  <div class="setting-text">
+    <div class="eyebrow">The Setting</div>
+    <h2 class="title">Working sunrise. Lake-fed sunset.</h2>
+    <p>Lonergan Ridge sits north of Omaha along a wildlife corridor of rolling Nebraska hills. The lake itself — 150 private acres — is shared by a small community of estate owners and is closed to public access. Kayak, paddleboard, and fish from your own dock.</p>
+    <p>The home faces due west. From the great room, sunrise reflects off the bluffs behind the residence. From the upper terrace, sunset settles over open water.</p>
+  </div>
+</div>
+
+<div class="location" id="location">
+  <div class="location-inner">
+    <div class="eyebrow">Location</div>
+    <h2 class="title">15 minutes from West Omaha.</h2>
+    <div class="points">
+      <div class="point">
+        <div class="point-time">14 min</div>
+        <h4>Village Pointe</h4>
+        <p>Shopping, dining, and Whole Foods.</p>
+      </div>
+      <div class="point">
+        <div class="point-time">9 min</div>
+        <h4>Elkhorn Schools</h4>
+        <p>Top-ranked public school district.</p>
+      </div>
+      <div class="point">
+        <div class="point-time">25 min</div>
+        <h4>Old Market</h4>
+        <p>Downtown dining and culture.</p>
+      </div>
+      <div class="point">
+        <div class="point-time">28 min</div>
+        <h4>Eppley Airfield</h4>
+        <p>Direct flights to most US hubs.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="contact-section" id="agent">
+  <div class="eyebrow">Listing Representation</div>
+  <h2 class="title">A boutique approach.</h2>
+  <div class="contact-grid" id="contact">
+    <div>
+      <div class="agent-photo" style="background-image:url('https://images.pexels.com/photos/3756679/pexels-photo-3756679.jpeg?auto=compress&cs=tinysrgb&w=1200');"></div>
+      <div class="agent-name">Margaret Whitfield</div>
+      <div class="agent-title">Senior Listing Agent · The Whitfield Group</div>
+      <p class="agent-bio">Margaret has represented buyers and sellers across Omaha's most prestigious neighborhoods for over fifteen years. Her practice focuses exclusively on residences above $1.5M, with a discreet, relationship-driven approach.</p>
+      <div class="agent-contact">
+        <div>(402) 555 - 0184</div>
+        <div>margaret@whitfield.example</div>
+        <div>NE License 20240199</div>
+      </div>
+    </div>
+    <form onsubmit="event.preventDefault(); alert('This is a demo form. In a real listing, this would email the agent.');">
+      <h3>Schedule a private tour</h3>
+      <p>Tours are available by appointment. Margaret will be in touch within one business day.</p>
+      <div class="form-group">
+        <label for="name">Full Name</label>
+        <input type="text" id="name" name="name" required />
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required />
+      </div>
+      <div class="form-group">
+        <label for="phone">Phone</label>
+        <input type="tel" id="phone" name="phone" />
+      </div>
+      <div class="form-group">
+        <label for="when">Preferred Tour Window</label>
+        <select id="when" name="when">
+          <option>This Week</option>
+          <option>Next Week</option>
+          <option>Within the Month</option>
+          <option>Just Gathering Information</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="message">Anything we should know?</label>
+        <textarea id="message" name="message"></textarea>
+      </div>
+      <button type="submit" class="form-submit">Request Tour</button>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand">Lonergan Ridge</div>
+        <p class="footer-tagline">A private estate above 150-acre Lake Lonergan, offered exclusively by The Whitfield Group.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Listing</h5>
+        <ul>
+          <li><a href="#residence">Residence</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+          <li><a href="#location">Location</a></li>
+          <li><a href="#contact">Schedule</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Contact</h5>
+        <ul>
+          <li>(402) 555 - 0184</li>
+          <li>margaret@whitfield.example</li>
+          <li>By appointment</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>© 2026 The Whitfield Group · Equal Housing Opportunity</div>
+      <div>Site by GroundRise Studio</div>
+    </div>
+    <div class="spec-note">
+      <strong>Concept design / portfolio piece.</strong> This site is a fictional sales presentation built for portfolio purposes by GroundRise Studio. The address, agent, photos, and listing details are illustrative and not affiliated with any real listing or agent. Imagery from Pexels under their free commercial license.
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
