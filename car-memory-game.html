@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta name="description" content="A text-based study app for learning the models and trim levels of 27 major car brands: flashcards plus three quiz modes with streaks and spaced repetition." />
+<meta name="description" content="A text-based study app for learning the 2025 model-year lineups (models and trims) of 27 major car brands: flashcards plus three quiz modes with streaks and spaced repetition." />
 <title>Trim Trainer — Learn Car Models &amp; Trims</title>
 <style>
 :root {
@@ -202,7 +202,7 @@ footer kbd { font-family: inherit; background: var(--bone); border: 1px solid va
 <header>
   <div class="eyebrow">Trim Trainer</div>
   <h1>Learn every brand's models &amp; trims.</h1>
-  <p>All text — no pictures needed. Pick a drill, answer fast, and anything you miss comes back around until it sticks. 27 brands, 168 models.</p>
+  <p>All text — no pictures needed. Pick a drill, answer fast, and anything you miss comes back around until it sticks. 27 brands, 167 models · <strong>2025 model year (US)</strong>.</p>
 </header>
 
 <nav class="modes" id="modes">
@@ -238,14 +238,14 @@ footer kbd { font-family: inherit; background: var(--bone); border: 1px solid va
 
 <footer>
   Keys: <kbd>1</kbd>–<kbd>4</kbd> answer · <kbd>Space</kbd> reveal / next · <kbd>Enter</kbd> continue.<br>
-  Trim names reflect common recent-model-year US lineups and are for study practice.
+  Trim data reflects 2025 model-year US lineups (verified for redesigned models against dealer/Edmunds listings); for study practice.
 </footer>
 
 <script>
 const DATA = {
   "Acura": {
     "Integra": ["Base","A-Spec","A-Spec Technology","Type S"],
-    "TLX": ["Base","Technology","A-Spec","Type S"],
+    "TLX": ["Technology","A-Spec","Type S"],
     "MDX": ["Base","Technology","A-Spec","Advance","Type S"],
     "RDX": ["Base","Technology","A-Spec","Advance"],
     "ZDX": ["A-Spec","Type S"]
@@ -258,14 +258,14 @@ const DATA = {
     "Q3": ["Premium","Premium Plus"],
     "Q5": ["Premium","Premium Plus","Prestige"],
     "Q7": ["Premium","Premium Plus","Prestige"],
-    "e-tron GT": ["Premium Plus","Prestige"]
+    "A7": ["Premium Plus","Prestige"]
   },
   "BMW": {
     "2 Series": ["230i","M240i","M2"],
     "3 Series": ["330i","M340i","M3"],
     "4 Series": ["430i","M440i","M4"],
     "5 Series": ["530i","540i","M5"],
-    "X3": ["sDrive30i","xDrive30i","M40i","X3 M"],
+    "X3": ["30 xDrive","M50 xDrive"],
     "X5": ["xDrive40i","xDrive50e","M60i","X5 M"],
     "X7": ["xDrive40i","M60i","Alpina XB7"]
   },
@@ -291,18 +291,17 @@ const DATA = {
     "Traverse": ["LS","LT","RS","Z71","High Country"],
     "Tahoe": ["LS","LT","RST","Z71","Premier","High Country"],
     "Suburban": ["LS","LT","RST","Z71","Premier","High Country"],
-    "Blazer": ["LT","RS","Premier"],
+    "Blazer": ["2LT","3LT","RS","Premier"],
     "Trailblazer": ["LS","LT","Activ","RS"],
     "Malibu": ["LS","RS","LT"],
     "Corvette": ["Stingray","E-Ray","Z06","ZR1"]
   },
   "Chrysler": {
-    "Pacifica": ["Touring","Touring L","Select","Limited","Pinnacle"],
-    "Voyager": ["LX","LXi"],
-    "300": ["Touring","300S","300C"]
+    "Pacifica": ["Select","Limited","Pinnacle"],
+    "Voyager": ["LX"]
   },
   "Dodge": {
-    "Charger": ["SXT","GT","R/T","Scat Pack","Daytona"],
+    "Charger Daytona": ["R/T","Scat Pack"],
     "Durango": ["SXT","GT","R/T","Citadel","SRT 392","SRT Hellcat"],
     "Hornet": ["GT","GT Plus","R/T","R/T Plus"]
   },
@@ -332,7 +331,7 @@ const DATA = {
     "Yukon": ["SLE","SLT","AT4","Denali","Denali Ultimate"]
   },
   "Honda": {
-    "Civic": ["LX","Sport","EX","Touring","Si","Type R"],
+    "Civic": ["LX","Sport","Sport Hybrid","Sport Touring Hybrid","Si","Type R"],
     "Accord": ["LX","SE","EX-L","Sport","Touring"],
     "CR-V": ["LX","EX","EX-L","Sport","Sport Touring"],
     "Pilot": ["Sport","EX-L","Touring","Elite","TrailSport"],
@@ -404,7 +403,7 @@ const DATA = {
     "Sentra": ["S","SV","SR"],
     "Altima": ["S","SV","SR","SL"],
     "Rogue": ["S","SV","SL","Platinum"],
-    "Murano": ["S","SV","SL","Platinum"],
+    "Murano": ["SV","SL","Platinum"],
     "Pathfinder": ["S","SV","SL","Platinum","Rock Creek"],
     "Frontier": ["S","SV","PRO-X","PRO-4X","SL"],
     "Titan": ["S","SV","PRO-4X","Platinum Reserve"],
@@ -420,7 +419,7 @@ const DATA = {
     "Taycan": ["Base","4S","Turbo","Turbo S"]
   },
   "Ram": {
-    "1500": ["Tradesman","Big Horn","Laramie","Rebel","Longhorn","Limited","TRX"],
+    "1500": ["Tradesman","Big Horn","Laramie","Rebel","RHO","Longhorn","Limited","Tungsten"],
     "2500": ["Tradesman","Big Horn","Laramie","Power Wagon","Longhorn","Limited"],
     "3500": ["Tradesman","Big Horn","Laramie","Longhorn","Limited"]
   },
@@ -445,9 +444,9 @@ const DATA = {
     "Prius": ["LE","XLE","Limited"],
     "RAV4": ["LE","XLE","Adventure","TRD Off-Road","Limited"],
     "Highlander": ["L","LE","XLE","XSE","Limited","Platinum"],
-    "4Runner": ["SR5","TRD Sport","TRD Off-Road","Limited","TRD Pro"],
-    "Tacoma": ["SR","SR5","TRD Sport","TRD Off-Road","Limited","TRD Pro"],
-    "Tundra": ["SR","SR5","Limited","Platinum","1794","TRD Pro"]
+    "4Runner": ["SR5","TRD Sport","TRD Off-Road","Limited","Platinum","TRD Pro","Trailhunter"],
+    "Tacoma": ["SR","SR5","TRD PreRunner","TRD Sport","TRD Off-Road","Limited","TRD Pro","Trailhunter"],
+    "Tundra": ["SR","SR5","Limited","Platinum","1794","TRD Pro","Capstone"]
   },
   "Volkswagen": {
     "Jetta": ["S","Sport","SE","SEL","GLI"],
@@ -559,7 +558,7 @@ function renderFlash() {
     <div class="fc-brand">${esc(c.brand)}</div>
     <div class="fc-model serif">${esc(c.model)}</div>
     <div class="fc-hint" id="fc-hint">What are its trims?</div>
-    <div class="fc-trims hidden" id="fc-trims"><b>${c.trims.length} trims</b><br>${c.trims.map(esc).join(' &nbsp;·&nbsp; ')}</div>
+    <div class="fc-trims hidden" id="fc-trims"><b>${c.trims.length} trim${c.trims.length === 1 ? '' : 's'}</b><br>${c.trims.map(esc).join(' &nbsp;·&nbsp; ')}</div>
     <div class="fc-actions" id="fc-reveal-wrap"><button class="big primary" id="fc-reveal">Show trims</button></div>
     <div class="fc-actions hidden" id="fc-grade">
       <button class="big warn" id="fc-review">Review again</button>
