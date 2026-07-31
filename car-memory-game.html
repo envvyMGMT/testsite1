@@ -3,364 +3,245 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="A text-based study app for learning the models and trim levels of 27 major car brands: flashcards plus three quiz modes with streaks and spaced repetition." />
 <title>Trim Trainer — Learn Car Models &amp; Trims</title>
-<meta name="description" content="A memory matching game to quickly learn the models and trim levels of major car brands." />
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..500&family=Geist:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 :root {
-  --ink: #1a1a1a;
-  --char: #2c2c2c;
-  --stone: #6b6b68;
-  --mist: #a8a8a4;
-  --line: #e2e0da;
-  --bone: #f1efe9;
-  --paper: #faf8f3;
-  --white: #ffffff;
-  --green: #3f6b52;
-  --gold: #b08640;
-  --max: 1100px;
+  --paper: #f6f5f1;
+  --card: #ffffff;
+  --ink: #1b1a17;
+  --char: #34322d;
+  --stone: #6f6c64;
+  --mist: #a5a29a;
+  --line: #e4e1d9;
+  --bone: #edeae2;
+  --accent: #2f5d3f;
+  --accent-2: #274d34;
+  --accent-soft: #e7efe8;
+  --accent-line: #cfe0d3;
+  --gold: #a9781f;
+  --danger: #b4514b;
+  --danger-soft: #f6e7e5;
+  --shadow: 0 1px 2px rgba(20,18,14,.05), 0 10px 30px rgba(20,18,14,.07);
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #14140f; --card: #1f1e18; --ink: #f2efe6; --char: #ddd9cd;
+    --stone: #9d998d; --mist: #6d6a5f; --line: #302e26; --bone: #26251e;
+    --accent: #7cbd90; --accent-2: #9ad0ab; --accent-soft: #1c2a20; --accent-line: #2f4535;
+    --gold: #d0a24e; --danger: #d6817a; --danger-soft: #2c1c1a;
+    --shadow: 0 1px 2px rgba(0,0,0,.3), 0 12px 34px rgba(0,0,0,.4);
+  }
+}
+:root[data-theme="light"] {
+  --paper: #f6f5f1; --card: #ffffff; --ink: #1b1a17; --char: #34322d;
+  --stone: #6f6c64; --mist: #a5a29a; --line: #e4e1d9; --bone: #edeae2;
+  --accent: #2f5d3f; --accent-2: #274d34; --accent-soft: #e7efe8; --accent-line: #cfe0d3;
+  --gold: #a9781f; --danger: #b4514b; --danger-soft: #f6e7e5;
+  --shadow: 0 1px 2px rgba(20,18,14,.05), 0 10px 30px rgba(20,18,14,.07);
+}
+:root[data-theme="dark"] {
+  --paper: #14140f; --card: #1f1e18; --ink: #f2efe6; --char: #ddd9cd;
+  --stone: #9d998d; --mist: #6d6a5f; --line: #302e26; --bone: #26251e;
+  --accent: #7cbd90; --accent-2: #9ad0ab; --accent-soft: #1c2a20; --accent-line: #2f4535;
+  --gold: #d0a24e; --danger: #d6817a; --danger-soft: #2c1c1a;
+  --shadow: 0 1px 2px rgba(0,0,0,.3), 0 12px 34px rgba(0,0,0,.4);
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
-
 body {
-  font-family: 'Geist', -apple-system, sans-serif;
-  background: var(--paper);
-  color: var(--ink);
-  line-height: 1.6;
-  -webkit-font-smoothing: antialiased;
-  padding-bottom: 4rem;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background: var(--paper); color: var(--ink); line-height: 1.6;
+  -webkit-font-smoothing: antialiased; padding-bottom: 4rem;
 }
+.serif { font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, "Times New Roman", serif; }
+.wrap { max-width: 760px; margin: 0 auto; padding: 0 1.25rem; }
 
-/* ============== HEADER ============== */
-header {
-  padding: 3rem 2rem 2rem;
-  max-width: var(--max);
-  margin: 0 auto;
-  text-align: center;
-}
-
-.eyebrow {
-  font-size: 0.85rem;
-  letter-spacing: 0.04em;
-  color: var(--stone);
-  margin-bottom: 1rem;
-}
-
+/* header */
+header { max-width: 760px; margin: 0 auto; padding: 2.75rem 1.25rem 1.25rem; text-align: center; }
+.eyebrow { font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.85rem; font-weight: 600; }
 h1 {
-  font-family: 'Fraunces', serif;
-  font-size: clamp(2rem, 5vw, 3.25rem);
-  font-weight: 300;
-  line-height: 1.05;
-  letter-spacing: -0.02em;
-  margin-bottom: 1rem;
+  font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  font-size: clamp(1.9rem, 5vw, 3rem); font-weight: 600; line-height: 1.04;
+  letter-spacing: -0.02em; margin: 0 auto 0.85rem; max-width: 18ch; text-wrap: balance;
 }
+header p { color: var(--stone); max-width: 52ch; margin: 0 auto; font-size: 1rem; }
 
-header p {
-  color: var(--char);
-  max-width: 560px;
-  margin: 0 auto;
-  font-size: 1.02rem;
+/* mode tabs */
+.modes {
+  max-width: 760px; margin: 1.5rem auto 0; padding: 0 1.25rem;
+  display: flex; gap: 0.5rem; flex-wrap: wrap; justify-content: center;
 }
+.mode-btn {
+  font: inherit; font-size: 0.9rem; font-weight: 500; padding: 0.5rem 0.95rem;
+  border: 1px solid var(--line); border-radius: 999px; background: var(--card);
+  color: var(--stone); cursor: pointer; transition: all .15s;
+}
+.mode-btn:hover { color: var(--ink); border-color: var(--stone); }
+.mode-btn.active { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+.mode-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 
-/* ============== CONTROLS ============== */
+/* controls */
 .controls {
-  max-width: var(--max);
-  margin: 2rem auto 0;
-  padding: 1.5rem 2rem;
-  background: var(--bone);
-  border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1.75rem;
-  align-items: flex-end;
-  justify-content: center;
+  max-width: 760px; margin: 1rem auto 0; padding: 0 1.25rem;
+  display: flex; gap: 0.75rem; align-items: flex-end; justify-content: center; flex-wrap: wrap;
 }
-
-.control-group { display: flex; flex-direction: column; gap: 0.4rem; }
-
-.control-group label {
-  font-size: 0.78rem;
-  color: var(--stone);
-  letter-spacing: 0.02em;
-}
-
+.control-group { display: flex; flex-direction: column; gap: 0.3rem; }
+.control-group label { font-size: 0.66rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--stone); }
 select, .btn {
-  font-family: 'Geist', sans-serif;
-  font-size: 0.95rem;
-  padding: 0.6rem 1rem;
-  border: 1px solid var(--line);
-  background: var(--white);
-  color: var(--ink);
-  cursor: pointer;
-  transition: border-color 0.2s, background 0.2s, opacity 0.2s;
+  font: inherit; font-size: 0.9rem; padding: 0.5rem 0.85rem; border: 1px solid var(--line);
+  border-radius: 8px; background: var(--card); color: var(--ink); cursor: pointer;
+  transition: border-color .15s, background .15s, transform .05s;
 }
-
-select:focus { outline: none; border-color: var(--ink); }
-
-.btn {
-  background: var(--ink);
-  color: var(--paper);
-  border-color: var(--ink);
-  font-weight: 500;
-}
-.btn:hover { background: var(--char); }
-.btn.ghost { background: var(--white); color: var(--ink); }
+select:hover, .btn:hover { border-color: var(--stone); }
+.btn:active { transform: translateY(1px); }
 .btn.ghost:hover { background: var(--bone); }
+select:focus-visible, .btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 
-/* ============== SCOREBOARD ============== */
-.scoreboard {
-  max-width: var(--max);
-  margin: 1.75rem auto 0;
-  padding: 0 2rem;
-  display: flex;
-  gap: 2.5rem;
-  justify-content: center;
-  flex-wrap: wrap;
+/* stats */
+.stats {
+  max-width: 760px; margin: 1.5rem auto 0; padding: 0 1.25rem;
+  display: grid; grid-template-columns: repeat(5, 1fr); gap: 0.6rem;
 }
-
-.stat { text-align: center; }
+.stats.hidden { display: none; }
+.stat {
+  background: var(--card); border: 1px solid var(--line); border-radius: 10px;
+  padding: 0.6rem 0.4rem; text-align: center;
+}
 .stat-value {
-  font-family: 'Fraunces', serif;
-  font-size: 1.75rem;
-  font-weight: 400;
-  line-height: 1;
+  font-family: "Iowan Old Style", Palatino, Georgia, serif; font-size: 1.35rem;
+  font-weight: 600; line-height: 1; font-variant-numeric: tabular-nums;
 }
-.stat-label { font-size: 0.75rem; color: var(--stone); margin-top: 0.25rem; }
+.stat-label { font-size: 0.6rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--stone); margin-top: 0.3rem; }
 
-/* ============== BOARD ============== */
-.board-wrap { max-width: var(--max); margin: 2rem auto 0; padding: 0 2rem; }
-
-.board {
-  display: grid;
-  gap: 0.9rem;
-  grid-template-columns: repeat(4, 1fr);
+/* stage */
+.stage { max-width: 760px; margin: 1.5rem auto 0; padding: 0 1.25rem; }
+.panel {
+  background: var(--card); border: 1px solid var(--line); border-radius: 16px;
+  box-shadow: var(--shadow); padding: 2rem 1.75rem;
 }
 
-.card {
-  position: relative;
-  aspect-ratio: 3 / 4;
-  perspective: 900px;
-  cursor: pointer;
+/* flashcards */
+.fc-progress { font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--stone); text-align: center; }
+.fc-brand { text-align: center; color: var(--gold); font-weight: 600; letter-spacing: 0.04em; margin-top: 1.1rem; font-size: 0.92rem; }
+.fc-model {
+  font-family: "Iowan Old Style", Palatino, Georgia, serif; text-align: center;
+  font-size: clamp(1.8rem, 6vw, 2.6rem); font-weight: 600; letter-spacing: -0.01em; margin: 0.15rem 0 0;
 }
+.fc-hint { text-align: center; color: var(--mist); font-size: 0.85rem; margin-top: 0.6rem; }
+.fc-trims {
+  margin: 1.4rem auto 0; max-width: 30rem; text-align: center; font-size: 1.05rem; color: var(--char);
+  line-height: 1.9; padding: 1rem 1.2rem; background: var(--accent-soft); border: 1px solid var(--accent-line); border-radius: 12px;
+}
+.fc-trims b { font-weight: 600; color: var(--ink); }
+.fc-actions { display: flex; gap: 0.6rem; justify-content: center; margin-top: 1.6rem; flex-wrap: wrap; }
+.big {
+  font: inherit; font-size: 0.98rem; font-weight: 600; padding: 0.7rem 1.4rem; border-radius: 10px;
+  cursor: pointer; border: 1px solid var(--line); background: var(--card); color: var(--ink); transition: all .12s;
+}
+.big:hover { border-color: var(--stone); }
+.big:active { transform: translateY(1px); }
+.big.primary { background: var(--accent); color: #fff; border-color: var(--accent); }
+.big.primary:hover { background: var(--accent-2); }
+.big.warn:hover { border-color: var(--danger); color: var(--danger); }
+.big:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.hidden { display: none !important; }
 
-.card-inner {
-  position: absolute;
-  inset: 0;
-  transform-style: preserve-3d;
-  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+/* quiz */
+.q-prompt {
+  font-family: "Iowan Old Style", Palatino, Georgia, serif; font-size: clamp(1.3rem, 4vw, 1.7rem);
+  text-align: center; line-height: 1.3; font-weight: 500; text-wrap: balance;
 }
+.q-prompt b { color: var(--gold); }
+.q-sub { text-align: center; color: var(--stone); font-size: 0.85rem; margin-top: 0.4rem; }
+.q-options { display: grid; gap: 0.6rem; margin-top: 1.5rem; }
+.opt {
+  font: inherit; font-size: 1rem; text-align: left; padding: 0.85rem 1rem 0.85rem 3rem; position: relative;
+  border: 1px solid var(--line); border-radius: 10px; background: var(--card); color: var(--ink);
+  cursor: pointer; transition: border-color .12s, background .12s;
+}
+.opt:hover:not(:disabled) { border-color: var(--stone); background: var(--bone); }
+.opt:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.opt .key {
+  position: absolute; left: 0.85rem; top: 50%; transform: translateY(-50%);
+  width: 1.5rem; height: 1.5rem; border-radius: 6px; border: 1px solid var(--line);
+  display: grid; place-items: center; font-size: 0.78rem; color: var(--stone); font-variant-numeric: tabular-nums;
+}
+.opt.correct { border-color: var(--accent); background: var(--accent-soft); }
+.opt.correct .key { border-color: var(--accent); background: var(--accent); color: #fff; }
+.opt.wrong { border-color: var(--danger); background: var(--danger-soft); }
+.opt.wrong .key { border-color: var(--danger); background: var(--danger); color: #fff; }
+.opt:disabled { cursor: default; }
+.q-feedback { text-align: center; margin-top: 1.25rem; font-size: 0.95rem; min-height: 1.4rem; }
+.q-feedback.ok { color: var(--accent-2); }
+.q-feedback.no { color: var(--danger); }
+.q-feedback b { font-weight: 600; }
+.q-next-wrap { display: flex; justify-content: center; margin-top: 1.1rem; }
 
-.card.flipped .card-inner,
-.card.matched .card-inner { transform: rotateY(180deg); }
+/* study */
+.study { max-width: 760px; margin: 2.25rem auto 0; padding: 0 1.25rem; }
+.study-head { border-bottom: 1px solid var(--line); padding-bottom: 0.6rem; margin-bottom: 1rem; display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; }
+.study-head h2 { font-family: "Iowan Old Style", Palatino, Georgia, serif; font-weight: 600; font-size: 1.25rem; }
+.study-brand { margin-bottom: 1.4rem; }
+.study-brand h3 { font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.5rem; }
+.study-row { display: grid; grid-template-columns: 120px 1fr; gap: 1rem; padding: 0.45rem 0; border-bottom: 1px solid var(--line); align-items: baseline; }
+.study-row .m { font-family: "Iowan Old Style", Palatino, Georgia, serif; font-weight: 600; font-size: 1rem; }
+.study-row .t { font-size: 0.88rem; color: var(--stone); }
 
-.card-face {
-  position: absolute;
-  inset: 0;
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 0.75rem;
-  border: 1px solid var(--line);
-  border-radius: 4px;
-}
+footer { max-width: 760px; margin: 3rem auto 0; padding: 1.5rem 1.25rem 0; text-align: center; color: var(--mist); font-size: 0.76rem; border-top: 1px solid var(--line); }
+footer kbd { font-family: inherit; background: var(--bone); border: 1px solid var(--line); border-radius: 5px; padding: 0.05rem 0.35rem; font-size: 0.72rem; color: var(--char); }
 
-.card-back {
-  background: var(--ink);
-  color: var(--paper);
-  font-family: 'Fraunces', serif;
-  font-size: 1.6rem;
-  font-weight: 300;
-}
-.card-back span { opacity: 0.85; }
-
-.card-front {
-  background: var(--white);
-  transform: rotateY(180deg);
-  flex-direction: column;
-  gap: 0.35rem;
-}
-
-.card.matched .card-front {
-  background: #eef3ef;
-  border-color: #cfe0d4;
-}
-
-.card-kind {
-  font-size: 0.68rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--stone);
-}
-
-.card-model {
-  font-family: 'Fraunces', serif;
-  font-size: 1.15rem;
-  font-weight: 400;
-  line-height: 1.15;
-  letter-spacing: -0.01em;
-}
-
-.card-trims {
-  font-size: 0.82rem;
-  color: var(--char);
-  line-height: 1.35;
-}
-
-.card.wrong .card-front { animation: shake 0.4s; border-color: #d9a3a3; }
-
-@keyframes shake {
-  0%, 100% { transform: rotateY(180deg) translateX(0); }
-  25% { transform: rotateY(180deg) translateX(-6px); }
-  75% { transform: rotateY(180deg) translateX(6px); }
-}
-
-@media (max-width: 760px) {
-  .board { grid-template-columns: repeat(3, 1fr); gap: 0.6rem; }
-  .card-back { font-size: 1.2rem; }
-  .card-model { font-size: 1rem; }
-  .card-trims { font-size: 0.74rem; }
-}
-@media (max-width: 460px) {
-  .board { grid-template-columns: repeat(2, 1fr); }
-}
-
-/* ============== WIN BANNER ============== */
-.win-banner {
-  max-width: var(--max);
-  margin: 1.5rem auto 0;
-  padding: 1.5rem 2rem;
-  background: var(--green);
-  color: var(--paper);
-  text-align: center;
-  border-radius: 4px;
-  display: none;
-}
-.win-banner.show { display: block; }
-.win-banner h3 {
-  font-family: 'Fraunces', serif;
-  font-weight: 400;
-  font-size: 1.5rem;
-  margin-bottom: 0.4rem;
-}
-.win-banner p { opacity: 0.9; font-size: 0.95rem; }
-
-/* ============== STUDY LIST ============== */
-.study {
-  max-width: var(--max);
-  margin: 3rem auto 0;
-  padding: 0 2rem;
-}
-.study-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border-bottom: 1px solid var(--line);
-  padding-bottom: 0.75rem;
-  margin-bottom: 1.25rem;
-}
-.study-header h2 {
-  font-family: 'Fraunces', serif;
-  font-weight: 400;
-  font-size: 1.4rem;
-  letter-spacing: -0.01em;
-}
-.study-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1rem 2.5rem;
-}
-.study-row {
-  display: grid;
-  grid-template-columns: 130px 1fr;
-  gap: 1rem;
-  padding: 0.6rem 0;
-  border-bottom: 1px solid var(--line);
-  align-items: baseline;
-}
-.study-model {
-  font-family: 'Fraunces', serif;
-  font-size: 1.05rem;
-}
-.study-trims { font-size: 0.9rem; color: var(--stone); }
-.study.hidden { display: none; }
-
-@media (max-width: 700px) {
-  .study-grid { grid-template-columns: 1fr; }
-}
-
-footer {
-  max-width: var(--max);
-  margin: 4rem auto 0;
-  padding: 2rem;
-  text-align: center;
-  color: var(--mist);
-  font-size: 0.8rem;
-  border-top: 1px solid var(--line);
+@media (max-width: 560px) {
+  .stats { grid-template-columns: repeat(3, 1fr); }
+  .panel { padding: 1.5rem 1.1rem; }
+  .opt { padding-left: 2.7rem; }
 }
 </style>
 </head>
 <body>
-
 <header>
   <div class="eyebrow">Trim Trainer</div>
-  <h1>Match the model to its trims.</h1>
-  <p>Pick a brand, flip the cards, and pair each model with its trim lineup. Repetition is the fastest way to memorize a lineup — the more rounds you play, the more it sticks.</p>
+  <h1>Learn every brand's models &amp; trims.</h1>
+  <p>All text — no pictures needed. Pick a drill, answer fast, and anything you miss comes back around until it sticks. 27 brands, 168 models.</p>
 </header>
+
+<nav class="modes" id="modes">
+  <button class="mode-btn active" data-mode="flash">Flashcards</button>
+  <button class="mode-btn" data-mode="brand">Name the brand</button>
+  <button class="mode-btn" data-mode="trim">Spot the real trim</button>
+  <button class="mode-btn" data-mode="model">Spot the model</button>
+</nav>
 
 <div class="controls">
   <div class="control-group">
-    <label for="brand">Brand</label>
-    <select id="brand"></select>
+    <label for="scope">Focus</label>
+    <select id="scope"></select>
   </div>
-  <div class="control-group">
-    <label for="size">Models per round</label>
-    <select id="size">
-      <option value="4">4 (easy)</option>
-      <option value="5" selected>5</option>
-      <option value="6">6</option>
-      <option value="8">8 (hard)</option>
-    </select>
-  </div>
-  <button class="btn" id="newGame">New round</button>
-  <button class="btn ghost" id="toggleStudy">Show study list</button>
+  <button class="btn ghost" id="restart">Reset stats</button>
+  <button class="btn ghost" id="toggleStudy">Study list</button>
 </div>
 
-<div class="scoreboard">
-  <div class="stat"><div class="stat-value" id="matches">0</div><div class="stat-label">Matched</div></div>
-  <div class="stat"><div class="stat-value" id="moves">0</div><div class="stat-label">Moves</div></div>
-  <div class="stat"><div class="stat-value" id="timer">0:00</div><div class="stat-label">Time</div></div>
+<div class="stats" id="stats">
+  <div class="stat"><div class="stat-value" id="s-correct">0</div><div class="stat-label">Correct</div></div>
+  <div class="stat"><div class="stat-value" id="s-streak">0</div><div class="stat-label">Streak</div></div>
+  <div class="stat"><div class="stat-value" id="s-best">0</div><div class="stat-label">Best</div></div>
+  <div class="stat"><div class="stat-value" id="s-acc">—</div><div class="stat-label">Accuracy</div></div>
+  <div class="stat"><div class="stat-value" id="s-seen">0</div><div class="stat-label">Answered</div></div>
 </div>
 
-<div class="win-banner" id="winBanner">
-  <h3>Round complete! 🏁</h3>
-  <p id="winText"></p>
-</div>
-
-<div class="board-wrap">
-  <div class="board" id="board"></div>
-</div>
+<main class="stage" id="stage"></main>
 
 <section class="study hidden" id="study">
-  <div class="study-header">
-    <h2 id="studyTitle">Study list</h2>
-  </div>
-  <div class="study-grid" id="studyGrid"></div>
+  <div class="study-head"><h2 id="study-title">Study list</h2></div>
+  <div id="study-body"></div>
 </section>
 
 <footer>
-  Trim Trainer — a study tool. Trim names reflect common recent-model-year lineups and are for learning practice.
+  Keys: <kbd>1</kbd>–<kbd>4</kbd> answer · <kbd>Space</kbd> reveal / next · <kbd>Enter</kbd> continue.<br>
+  Trim names reflect common recent-model-year US lineups and are for study practice.
 </footer>
 
 <script>
-// ---- Data: brand -> model -> trim levels ----
 const DATA = {
   "Acura": {
     "Integra": ["Base","A-Spec","A-Spec Technology","Type S"],
@@ -586,154 +467,221 @@ const DATA = {
   }
 };
 
-// ---- State ----
-let firstCard = null, lock = false, matches = 0, moves = 0, totalPairs = 0;
-let timerId = null, seconds = 0, started = false;
+// ---- flatten ----
+const BRANDS = Object.keys(DATA);
+const ENTRIES = [];              // {brand, model, trims}
+BRANDS.forEach(b => Object.entries(DATA[b]).forEach(([m, t]) => ENTRIES.push({ brand: b, model: m, trims: t })));
+const ALL_TRIMS = [...new Set(ENTRIES.flatMap(e => e.trims))];
 
 const $ = id => document.getElementById(id);
-const board = $('board');
+const stage = $('stage');
 
-// Populate brand dropdown
-Object.keys(DATA).forEach(b => {
-  const o = document.createElement('option');
-  o.value = b; o.textContent = b;
-  $('brand').appendChild(o);
+// ---- helpers ----
+function shuffle(a) { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
+function pick(a) { return a[Math.floor(Math.random() * a.length)]; }
+function sampleDistinct(source, n, exclude) {
+  const ex = new Set(exclude || []);
+  const pool = shuffle(source.filter(x => !ex.has(x)));
+  return pool.slice(0, n);
+}
+function esc(s) { return String(s).replace(/[&<>]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c])); }
+
+// ---- state ----
+const LS = 'trimTrainer.best';
+let state = {
+  mode: 'flash',
+  scope: '__all',
+  correct: 0, wrong: 0, streak: 0, best: 0,
+  pool: [], queue: [],          // quiz subjects
+  deck: [], di: 0, review: [],  // flashcards
+  current: null, answered: false
+};
+try { state.best = parseInt(localStorage.getItem(LS) || '0', 10) || 0; } catch (e) {}
+
+// populate scope dropdown
+(() => {
+  const all = document.createElement('option');
+  all.value = '__all'; all.textContent = 'All brands';
+  $('scope').appendChild(all);
+  BRANDS.forEach(b => { const o = document.createElement('option'); o.value = b; o.textContent = b; $('scope').appendChild(o); });
+})();
+
+function buildPool() {
+  state.pool = state.scope === '__all' ? ENTRIES.slice() : ENTRIES.filter(e => e.brand === state.scope);
+  state.queue = shuffle(state.pool);
+  state.deck = shuffle(state.pool); state.di = 0; state.review = [];
+}
+function nextSubject() {
+  if (!state.queue.length) state.queue = shuffle(state.pool);
+  return state.queue.shift();
+}
+function requeue(subject) {                 // spaced repetition: bring a missed item back soon
+  const at = Math.min(state.queue.length, 2 + Math.floor(Math.random() * 4));
+  state.queue.splice(at, 0, subject);
+}
+
+function updateStats() {
+  $('s-correct').textContent = state.correct;
+  $('s-streak').textContent = state.streak;
+  $('s-best').textContent = state.best;
+  const tot = state.correct + state.wrong;
+  $('s-acc').textContent = tot ? Math.round(100 * state.correct / tot) + '%' : '—';
+  $('s-seen').textContent = tot;
+}
+function score(ok) {
+  if (ok) { state.correct++; state.streak++; if (state.streak > state.best) { state.best = state.streak; try { localStorage.setItem(LS, String(state.best)); } catch (e) {} } }
+  else { state.wrong++; state.streak = 0; }
+  updateStats();
+}
+
+// ---- render ----
+function render() {
+  $('stats').classList.toggle('hidden', state.mode === 'flash');
+  if (state.mode === 'flash') renderFlash();
+  else renderQuiz();
+}
+
+function renderFlash() {
+  if (state.di >= state.deck.length) {
+    if (state.review.length) { state.deck = shuffle(state.review); state.review = []; state.di = 0; }
+    else {
+      stage.innerHTML = `<div class="panel" style="text-align:center">
+        <div class="fc-model serif">Deck complete 🏁</div>
+        <p style="color:var(--stone);margin-top:.5rem">You went through every card in this set.</p>
+        <div class="fc-actions"><button class="big primary" id="fc-again">Go again</button></div></div>`;
+      $('fc-again').onclick = () => { buildPool(); render(); };
+      return;
+    }
+  }
+  const c = state.deck[state.di];
+  stage.innerHTML = `<div class="panel">
+    <div class="fc-progress">Card ${state.di + 1} / ${state.deck.length}${state.review.length ? ' · ' + state.review.length + ' to review' : ''}</div>
+    <div class="fc-brand">${esc(c.brand)}</div>
+    <div class="fc-model serif">${esc(c.model)}</div>
+    <div class="fc-hint" id="fc-hint">What are its trims?</div>
+    <div class="fc-trims hidden" id="fc-trims"><b>${c.trims.length} trims</b><br>${c.trims.map(esc).join(' &nbsp;·&nbsp; ')}</div>
+    <div class="fc-actions" id="fc-reveal-wrap"><button class="big primary" id="fc-reveal">Show trims</button></div>
+    <div class="fc-actions hidden" id="fc-grade">
+      <button class="big warn" id="fc-review">Review again</button>
+      <button class="big primary" id="fc-got">Got it →</button>
+    </div>
+  </div>`;
+  $('fc-reveal').onclick = revealFlash;
+  $('fc-review').onclick = () => { state.review.push(c); state.di++; render(); };
+  $('fc-got').onclick = () => { state.di++; render(); };
+}
+function revealFlash() {
+  $('fc-trims').classList.remove('hidden');
+  $('fc-hint').classList.add('hidden');
+  $('fc-reveal-wrap').classList.add('hidden');
+  $('fc-grade').classList.remove('hidden');
+}
+
+function renderQuiz() {
+  const c = nextSubject();
+  state.current = c; state.answered = false;
+  let prompt, sub, options, correct;
+
+  if (state.mode === 'brand') {
+    prompt = `Which brand makes the <b>${esc(c.model)}</b>?`;
+    sub = 'Name the brand';
+    correct = c.brand;
+    options = shuffle([correct, ...sampleDistinct(BRANDS, 3, [correct])]);
+  } else if (state.mode === 'trim') {
+    prompt = `Which is a real <b>${esc(c.brand)} ${esc(c.model)}</b> trim?`;
+    sub = 'One is real · three are from other models';
+    correct = pick(c.trims);
+    options = shuffle([correct, ...sampleDistinct(ALL_TRIMS, 3, c.trims)]);
+  } else { // model
+    prompt = `Which of these is a <b>${esc(c.brand)}</b> model?`;
+    sub = 'Spot the model that belongs to this brand';
+    correct = c.model;
+    const others = ENTRIES.filter(e => e.brand !== c.brand).map(e => e.model);
+    options = shuffle([correct, ...sampleDistinct(others, 3, [correct])]);
+  }
+
+  stage.innerHTML = `<div class="panel">
+    <div class="q-prompt">${prompt}</div>
+    <div class="q-sub">${sub}</div>
+    <div class="q-options" id="q-opts">
+      ${options.map((o, i) => `<button class="opt" data-val="${esc(o)}"><span class="key">${i + 1}</span>${esc(o)}</button>`).join('')}
+    </div>
+    <div class="q-feedback" id="q-fb"></div>
+    <div class="q-next-wrap hidden" id="q-next-wrap"><button class="big primary" id="q-next">Next →</button></div>
+  </div>`;
+
+  [...document.querySelectorAll('.opt')].forEach(btn => btn.onclick = () => answer(btn, correct, c));
+  $('q-next') && ($('q-next').onclick = render);
+}
+
+function answer(btn, correct, subject) {
+  if (state.answered) return;
+  state.answered = true;
+  const chosen = btn.dataset.val;
+  const ok = chosen === correct;
+  [...document.querySelectorAll('.opt')].forEach(b => {
+    b.disabled = true;
+    if (b.dataset.val === correct) b.classList.add('correct');
+    else if (b === btn) b.classList.add('wrong');
+  });
+  const fb = $('q-fb');
+  if (ok) { fb.className = 'q-feedback ok'; fb.innerHTML = 'Correct.'; }
+  else { fb.className = 'q-feedback no'; fb.innerHTML = `Answer: <b>${esc(correct)}</b>`; requeue(subject); }
+  score(ok);
+  $('q-next-wrap').classList.remove('hidden');
+  $('q-next').focus();
+}
+
+// ---- study list ----
+function buildStudy() {
+  const brands = state.scope === '__all' ? BRANDS : [state.scope];
+  $('study-title').textContent = state.scope === '__all' ? 'Study list — all brands' : state.scope + ' — models & trims';
+  $('study-body').innerHTML = brands.map(b => `
+    <div class="study-brand">
+      <h3>${esc(b)}</h3>
+      ${Object.entries(DATA[b]).map(([m, t]) => `<div class="study-row"><div class="m">${esc(m)}</div><div class="t">${t.map(esc).join(' · ')}</div></div>`).join('')}
+    </div>`).join('');
+}
+
+// ---- controls ----
+$('modes').addEventListener('click', e => {
+  const b = e.target.closest('.mode-btn'); if (!b) return;
+  [...document.querySelectorAll('.mode-btn')].forEach(x => x.classList.toggle('active', x === b));
+  state.mode = b.dataset.mode;
+  state.queue = shuffle(state.pool); state.deck = shuffle(state.pool); state.di = 0; state.review = [];
+  render();
 });
-
-function shuffle(arr) {
-  for (let i = arr.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [arr[i], arr[j]] = [arr[j], arr[i]];
-  }
-  return arr;
-}
-
-function fmtTime(s) {
-  const m = Math.floor(s / 60), sec = s % 60;
-  return m + ':' + String(sec).padStart(2, '0');
-}
-
-function stopTimer() { clearInterval(timerId); timerId = null; }
-function startTimer() {
-  stopTimer();
-  timerId = setInterval(() => { seconds++; $('timer').textContent = fmtTime(seconds); }, 1000);
-}
-
-function newGame() {
-  const brand = $('brand').value;
-  const size = parseInt($('size').value, 10);
-  const models = shuffle(Object.keys(DATA[brand])).slice(0, size);
-  totalPairs = models.length;
-
-  // Build card list: for each model, a "model" card and a "trims" card that share an id.
-  let cards = [];
-  models.forEach((model, i) => {
-    const trims = DATA[brand][model];
-    cards.push({ pair: i, kind: 'model', model, trims });
-    cards.push({ pair: i, kind: 'trims', model, trims });
-  });
-  shuffle(cards);
-
-  // Reset state
-  firstCard = null; lock = false; matches = 0; moves = 0; seconds = 0; started = false;
-  $('matches').textContent = '0';
-  $('moves').textContent = '0';
-  $('timer').textContent = '0:00';
-  $('winBanner').classList.remove('show');
-  stopTimer();
-
-  // Render
-  board.innerHTML = '';
-  cards.forEach(c => board.appendChild(renderCard(c, brand)));
-  buildStudy(brand);
-}
-
-function renderCard(c, brand) {
-  const el = document.createElement('div');
-  el.className = 'card';
-  el.dataset.pair = c.pair;
-
-  const front = c.kind === 'model'
-    ? `<div class="card-kind">Model</div><div class="card-model">${c.model}</div>`
-    : `<div class="card-kind">Trims</div><div class="card-trims">${c.trims.join(' · ')}</div>`;
-
-  el.innerHTML = `
-    <div class="card-inner">
-      <div class="card-face card-back"><span>${brand}</span></div>
-      <div class="card-face card-front">${front}</div>
-    </div>`;
-
-  el.addEventListener('click', () => onFlip(el));
-  return el;
-}
-
-function onFlip(el) {
-  if (lock || el.classList.contains('flipped') || el.classList.contains('matched')) return;
-
-  if (!started) { started = true; startTimer(); }
-
-  el.classList.add('flipped');
-
-  if (!firstCard) { firstCard = el; return; }
-
-  // Second card
-  moves++;
-  $('moves').textContent = moves;
-  lock = true;
-
-  if (firstCard.dataset.pair === el.dataset.pair) {
-    // Match
-    setTimeout(() => {
-      firstCard.classList.add('matched');
-      el.classList.add('matched');
-      firstCard = null; lock = false;
-      matches++;
-      $('matches').textContent = matches;
-      if (matches === totalPairs) win();
-    }, 400);
-  } else {
-    // No match
-    firstCard.classList.add('wrong');
-    el.classList.add('wrong');
-    setTimeout(() => {
-      firstCard.classList.remove('flipped', 'wrong');
-      el.classList.remove('flipped', 'wrong');
-      firstCard = null; lock = false;
-    }, 850);
-  }
-}
-
-function win() {
-  stopTimer();
-  $('winText').textContent =
-    `You paired all ${totalPairs} models in ${moves} moves and ${fmtTime(seconds)}. Play again to lock it in.`;
-  $('winBanner').classList.add('show');
-}
-
-function buildStudy(brand) {
-  $('studyTitle').textContent = brand + ' — models & trims';
-  const grid = $('studyGrid');
-  grid.innerHTML = '';
-  Object.entries(DATA[brand]).forEach(([model, trims]) => {
-    const row = document.createElement('div');
-    row.className = 'study-row';
-    row.innerHTML = `<div class="study-model">${model}</div><div class="study-trims">${trims.join(' · ')}</div>`;
-    grid.appendChild(row);
-  });
-}
-
-// ---- Wire up controls ----
-$('newGame').addEventListener('click', newGame);
-$('brand').addEventListener('change', newGame);
-$('size').addEventListener('change', newGame);
+$('scope').addEventListener('change', () => {
+  state.scope = $('scope').value;
+  buildPool(); buildStudy(); render();
+});
+$('restart').addEventListener('click', () => {
+  state.correct = 0; state.wrong = 0; state.streak = 0;
+  buildPool(); updateStats(); render();
+});
 $('toggleStudy').addEventListener('click', () => {
-  const s = $('study');
-  s.classList.toggle('hidden');
-  $('toggleStudy').textContent = s.classList.contains('hidden') ? 'Show study list' : 'Hide study list';
+  const s = $('study'); s.classList.toggle('hidden');
+  $('toggleStudy').textContent = s.classList.contains('hidden') ? 'Study list' : 'Hide study list';
 });
 
-// Start
-newGame();
+// keyboard
+document.addEventListener('keydown', e => {
+  if (state.mode === 'flash') {
+    if (e.key === ' ' || e.key === 'Enter') {
+      e.preventDefault();
+      if ($('fc-reveal') && !$('fc-reveal-wrap').classList.contains('hidden')) revealFlash();
+      else if ($('fc-got')) $('fc-got').click();
+    } else if (e.key.toLowerCase() === 'r' && $('fc-review') && !$('fc-grade').classList.contains('hidden')) $('fc-review').click();
+    return;
+  }
+  if (!state.answered && ['1', '2', '3', '4'].includes(e.key)) {
+    const opts = document.querySelectorAll('.opt');
+    const i = parseInt(e.key, 10) - 1; if (opts[i]) opts[i].click();
+  } else if (state.answered && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); render(); }
+});
+
+// ---- init ----
+buildPool(); buildStudy(); updateStats(); render();
 </script>
 
 </body>
