@@ -362,59 +362,227 @@ footer {
 <script>
 // ---- Data: brand -> model -> trim levels ----
 const DATA = {
-  "Toyota": {
-    "Camry":     ["LE", "SE", "XLE", "XSE"],
-    "Corolla":   ["L", "LE", "SE", "XLE", "XSE"],
-    "RAV4":      ["LE", "XLE", "Adventure", "TRD Off-Road", "Limited"],
-    "Highlander":["L", "LE", "XLE", "XSE", "Limited", "Platinum"],
-    "Tacoma":    ["SR", "SR5", "TRD Sport", "TRD Off-Road", "Limited", "TRD Pro"],
-    "Tundra":    ["SR", "SR5", "Limited", "Platinum", "1794", "TRD Pro"],
-    "4Runner":   ["SR5", "TRD Sport", "TRD Off-Road", "Limited", "TRD Pro"],
-    "Prius":     ["LE", "XLE", "Limited"]
+  "Acura": {
+    "Integra": ["Base","A-Spec","A-Spec Technology","Type S"],
+    "TLX": ["Base","Technology","A-Spec","Type S"],
+    "MDX": ["Base","Technology","A-Spec","Advance","Type S"],
+    "RDX": ["Base","Technology","A-Spec","Advance"],
+    "ZDX": ["A-Spec","Type S"]
   },
-  "Honda": {
-    "Civic":   ["LX", "Sport", "EX", "Touring", "Si", "Type R"],
-    "Accord":  ["LX", "SE", "EX-L", "Sport", "Touring"],
-    "CR-V":    ["LX", "EX", "EX-L", "Sport", "Sport Touring"],
-    "Pilot":   ["Sport", "EX-L", "Touring", "Elite", "TrailSport"],
-    "HR-V":    ["LX", "Sport", "EX-L"],
-    "Passport":["EX-L", "TrailSport", "Elite"],
-    "Odyssey": ["EX-L", "Sport", "Touring", "Elite"]
-  },
-  "Ford": {
-    "F-150":    ["XL", "XLT", "Lariat", "King Ranch", "Platinum", "Raptor"],
-    "Mustang":  ["EcoBoost", "GT", "Dark Horse"],
-    "Explorer": ["Active", "XLT", "Limited", "ST", "Platinum"],
-    "Escape":   ["Active", "ST-Line", "Platinum"],
-    "Bronco":   ["Big Bend", "Black Diamond", "Outer Banks", "Badlands", "Wildtrak", "Raptor"],
-    "Maverick": ["XL", "XLT", "Lariat", "Tremor"],
-    "Ranger":   ["XL", "XLT", "Lariat", "Raptor"]
+  "Audi": {
+    "A3": ["Premium","Premium Plus","Prestige"],
+    "A4": ["Premium","Premium Plus","Prestige"],
+    "A6": ["Premium","Premium Plus","Prestige"],
+    "A5": ["Premium","Premium Plus","Prestige"],
+    "Q3": ["Premium","Premium Plus"],
+    "Q5": ["Premium","Premium Plus","Prestige"],
+    "Q7": ["Premium","Premium Plus","Prestige"],
+    "e-tron GT": ["Premium Plus","Prestige"]
   },
   "BMW": {
-    "3 Series": ["330i", "M340i", "M3"],
-    "5 Series": ["530i", "540i", "M5"],
-    "4 Series": ["430i", "M440i", "M4"],
-    "X3":       ["sDrive30i", "xDrive30i", "M40i", "X3 M"],
-    "X5":       ["xDrive40i", "xDrive50e", "M60i", "X5 M"],
-    "X7":       ["xDrive40i", "M60i", "Alpina XB7"],
-    "2 Series": ["230i", "M240i", "M2"]
+    "2 Series": ["230i","M240i","M2"],
+    "3 Series": ["330i","M340i","M3"],
+    "4 Series": ["430i","M440i","M4"],
+    "5 Series": ["530i","540i","M5"],
+    "X3": ["sDrive30i","xDrive30i","M40i","X3 M"],
+    "X5": ["xDrive40i","xDrive50e","M60i","X5 M"],
+    "X7": ["xDrive40i","M60i","Alpina XB7"]
+  },
+  "Buick": {
+    "Encore GX": ["Preferred","Sport Touring","Avenir"],
+    "Envista": ["Preferred","Sport Touring","Avenir"],
+    "Envision": ["Preferred","Sport Touring","Avenir"],
+    "Enclave": ["Preferred","Sport Touring","Avenir"]
+  },
+  "Cadillac": {
+    "CT4": ["Luxury","Premium Luxury","Sport","V-Series"],
+    "CT5": ["Luxury","Premium Luxury","Sport","V-Series","Blackwing"],
+    "XT4": ["Luxury","Premium Luxury","Sport"],
+    "XT5": ["Luxury","Premium Luxury","Sport"],
+    "XT6": ["Luxury","Premium Luxury","Sport"],
+    "Escalade": ["Luxury","Premium Luxury","Sport","Platinum","V-Series"],
+    "Lyriq": ["Tech","Luxury","Sport"]
+  },
+  "Chevrolet": {
+    "Silverado": ["WT","Custom","LT","RST","LTZ","High Country","ZR2"],
+    "Colorado": ["WT","LT","Trail Boss","Z71","ZR2"],
+    "Equinox": ["LT","RS","Activ"],
+    "Traverse": ["LS","LT","RS","Z71","High Country"],
+    "Tahoe": ["LS","LT","RST","Z71","Premier","High Country"],
+    "Suburban": ["LS","LT","RST","Z71","Premier","High Country"],
+    "Blazer": ["LT","RS","Premier"],
+    "Trailblazer": ["LS","LT","Activ","RS"],
+    "Malibu": ["LS","RS","LT"],
+    "Corvette": ["Stingray","E-Ray","Z06","ZR1"]
+  },
+  "Chrysler": {
+    "Pacifica": ["Touring","Touring L","Select","Limited","Pinnacle"],
+    "Voyager": ["LX","LXi"],
+    "300": ["Touring","300S","300C"]
+  },
+  "Dodge": {
+    "Charger": ["SXT","GT","R/T","Scat Pack","Daytona"],
+    "Durango": ["SXT","GT","R/T","Citadel","SRT 392","SRT Hellcat"],
+    "Hornet": ["GT","GT Plus","R/T","R/T Plus"]
+  },
+  "Ford": {
+    "F-150": ["XL","XLT","Lariat","King Ranch","Platinum","Raptor"],
+    "Mustang": ["EcoBoost","GT","Dark Horse"],
+    "Explorer": ["Active","XLT","Limited","ST","Platinum"],
+    "Escape": ["Active","ST-Line","Platinum"],
+    "Bronco": ["Big Bend","Black Diamond","Outer Banks","Badlands","Wildtrak","Raptor"],
+    "Bronco Sport": ["Big Bend","Heritage","Outer Banks","Badlands"],
+    "Maverick": ["XL","XLT","Lariat","Tremor"],
+    "Ranger": ["XL","XLT","Lariat","Raptor"]
+  },
+  "Genesis": {
+    "G70": ["Standard","Sport","Sport Prestige"],
+    "G80": ["Standard","Advanced","Prestige"],
+    "G90": ["3.5T","3.5T E-Supercharger"],
+    "GV60": ["Advanced","Performance"],
+    "GV70": ["Standard","Advanced","Sport","Sport Prestige"],
+    "GV80": ["2.5T","3.5T","Advanced","Prestige"]
+  },
+  "GMC": {
+    "Sierra 1500": ["Pro","SLE","Elevation","SLT","AT4","Denali","AT4X"],
+    "Canyon": ["Elevation","AT4","Denali","AT4X"],
+    "Terrain": ["SLE","SLT","AT4","Denali"],
+    "Acadia": ["Elevation","AT4","Denali"],
+    "Yukon": ["SLE","SLT","AT4","Denali","Denali Ultimate"]
+  },
+  "Honda": {
+    "Civic": ["LX","Sport","EX","Touring","Si","Type R"],
+    "Accord": ["LX","SE","EX-L","Sport","Touring"],
+    "CR-V": ["LX","EX","EX-L","Sport","Sport Touring"],
+    "Pilot": ["Sport","EX-L","Touring","Elite","TrailSport"],
+    "HR-V": ["LX","Sport","EX-L"],
+    "Passport": ["EX-L","TrailSport","Elite"],
+    "Odyssey": ["EX-L","Sport","Touring","Elite"]
+  },
+  "Hyundai": {
+    "Elantra": ["SE","SEL","N Line","Limited","N"],
+    "Sonata": ["SE","SEL","N Line","Limited"],
+    "Kona": ["SE","SEL","N Line","Limited"],
+    "Tucson": ["SE","SEL","XRT","N Line","Limited"],
+    "Santa Fe": ["SE","SEL","XRT","Limited","Calligraphy"],
+    "Palisade": ["SE","SEL","XRT","Limited","Calligraphy"],
+    "Santa Cruz": ["SE","SEL","XRT","Limited"],
+    "Ioniq 5": ["SE","SEL","Limited"]
+  },
+  "Jeep": {
+    "Wrangler": ["Sport","Willys","Sahara","Rubicon","Rubicon 392"],
+    "Grand Cherokee": ["Laredo","Limited","Overland","Summit","Trailhawk"],
+    "Cherokee": ["Latitude","Altitude","Limited","Trailhawk"],
+    "Compass": ["Sport","Latitude","Limited","Trailhawk"],
+    "Gladiator": ["Sport","Willys","Mojave","Rubicon"],
+    "Wagoneer": ["Series I","Series II","Series III"]
+  },
+  "Kia": {
+    "K4": ["LX","LXS","GT-Line","GT-Line Turbo"],
+    "K5": ["LXS","GT-Line","EX","GT"],
+    "Soul": ["LX","S","GT-Line","EX","X-Line"],
+    "Seltos": ["LX","S","EX","X-Line","SX"],
+    "Sportage": ["LX","EX","X-Line","SX","X-Pro"],
+    "Sorento": ["LX","S","EX","SX","X-Line","X-Pro"],
+    "Telluride": ["LX","S","EX","SX","X-Line","X-Pro"],
+    "Carnival": ["LX","EX","SX","SX Prestige"]
+  },
+  "Lexus": {
+    "ES": ["250","350","350 F Sport","300h"],
+    "IS": ["300","350 F Sport","500 F Sport Performance"],
+    "RX": ["350","350 F Sport","450h+","500h F Sport"],
+    "NX": ["250","350 F Sport","350h","450h+"],
+    "GX": ["Premium","Overtrail","Luxury"],
+    "TX": ["350","350h","500h F Sport"],
+    "LX": ["600","F Sport","Ultra Luxury"]
+  },
+  "Lincoln": {
+    "Corsair": ["Premiere","Reserve","Grand Touring"],
+    "Nautilus": ["Premiere","Reserve","Black Label"],
+    "Aviator": ["Premiere","Reserve","Black Label"],
+    "Navigator": ["Reserve","Black Label"]
+  },
+  "Mazda": {
+    "Mazda3": ["S","Select","Preferred","Premium","Turbo"],
+    "CX-30": ["S","Select","Preferred","Premium","Turbo"],
+    "CX-5": ["S","Select","Preferred","Premium","Turbo Signature"],
+    "CX-50": ["S","Select","Preferred","Premium","Turbo Meridian"],
+    "CX-90": ["Select","Preferred","Premium","Premium Plus","Turbo S"],
+    "MX-5 Miata": ["Sport","Club","Grand Touring"]
   },
   "Mercedes-Benz": {
-    "C-Class": ["C 300", "AMG C 43", "AMG C 63"],
-    "E-Class": ["E 350", "E 450", "AMG E 53"],
-    "S-Class": ["S 500", "S 580", "Maybach"],
-    "GLC":     ["GLC 300", "AMG GLC 43", "AMG GLC 63"],
-    "GLE":     ["GLE 350", "GLE 450", "AMG GLE 53"],
-    "GLA":     ["GLA 250", "AMG GLA 35", "AMG GLA 45"],
-    "GLB":     ["GLB 250", "AMG GLB 35"]
+    "C-Class": ["C 300","AMG C 43","AMG C 63"],
+    "E-Class": ["E 350","E 450","AMG E 53"],
+    "S-Class": ["S 500","S 580","Maybach"],
+    "GLA": ["GLA 250","AMG GLA 35","AMG GLA 45"],
+    "GLB": ["GLB 250","AMG GLB 35"],
+    "GLC": ["GLC 300","AMG GLC 43","AMG GLC 63"],
+    "GLE": ["GLE 350","GLE 450","AMG GLE 53"]
+  },
+  "Nissan": {
+    "Sentra": ["S","SV","SR"],
+    "Altima": ["S","SV","SR","SL"],
+    "Rogue": ["S","SV","SL","Platinum"],
+    "Murano": ["S","SV","SL","Platinum"],
+    "Pathfinder": ["S","SV","SL","Platinum","Rock Creek"],
+    "Frontier": ["S","SV","PRO-X","PRO-4X","SL"],
+    "Titan": ["S","SV","PRO-4X","Platinum Reserve"],
+    "Kicks": ["S","SV","SR"],
+    "Z": ["Sport","Performance","Nismo"]
+  },
+  "Porsche": {
+    "911": ["Carrera","Carrera S","Turbo","Turbo S","GT3"],
+    "718 Cayman": ["Base","S","GTS 4.0","GT4 RS"],
+    "Cayenne": ["Base","S","GTS","Turbo GT"],
+    "Macan": ["Base","S","GTS","Turbo"],
+    "Panamera": ["Base","4S","GTS","Turbo E-Hybrid"],
+    "Taycan": ["Base","4S","Turbo","Turbo S"]
+  },
+  "Ram": {
+    "1500": ["Tradesman","Big Horn","Laramie","Rebel","Longhorn","Limited","TRX"],
+    "2500": ["Tradesman","Big Horn","Laramie","Power Wagon","Longhorn","Limited"],
+    "3500": ["Tradesman","Big Horn","Laramie","Longhorn","Limited"]
   },
   "Subaru": {
-    "Outback":   ["Base", "Premium", "Limited", "Touring", "Wilderness"],
-    "Forester":  ["Base", "Premium", "Sport", "Limited", "Touring", "Wilderness"],
-    "Crosstrek": ["Base", "Premium", "Sport", "Limited", "Wilderness"],
-    "Impreza":   ["Base", "Sport", "RS"],
-    "Ascent":    ["Base", "Premium", "Onyx", "Limited", "Touring"],
-    "WRX":       ["Base", "Premium", "Limited", "GT"]
+    "Impreza": ["Base","Sport","RS"],
+    "Crosstrek": ["Base","Premium","Sport","Limited","Wilderness"],
+    "Forester": ["Base","Premium","Sport","Limited","Touring","Wilderness"],
+    "Outback": ["Base","Premium","Limited","Touring","Wilderness"],
+    "Ascent": ["Base","Premium","Onyx","Limited","Touring"],
+    "WRX": ["Base","Premium","Limited","GT"]
+  },
+  "Tesla": {
+    "Model 3": ["RWD","Long Range","Performance"],
+    "Model Y": ["RWD","Long Range","Performance"],
+    "Model S": ["Long Range","Plaid"],
+    "Model X": ["Long Range","Plaid"],
+    "Cybertruck": ["Rear-Wheel Drive","All-Wheel Drive","Cyberbeast"]
+  },
+  "Toyota": {
+    "Corolla": ["L","LE","SE","XLE","XSE"],
+    "Camry": ["LE","SE","XLE","XSE"],
+    "Prius": ["LE","XLE","Limited"],
+    "RAV4": ["LE","XLE","Adventure","TRD Off-Road","Limited"],
+    "Highlander": ["L","LE","XLE","XSE","Limited","Platinum"],
+    "4Runner": ["SR5","TRD Sport","TRD Off-Road","Limited","TRD Pro"],
+    "Tacoma": ["SR","SR5","TRD Sport","TRD Off-Road","Limited","TRD Pro"],
+    "Tundra": ["SR","SR5","Limited","Platinum","1794","TRD Pro"]
+  },
+  "Volkswagen": {
+    "Jetta": ["S","Sport","SE","SEL","GLI"],
+    "Golf GTI": ["S","SE","Autobahn"],
+    "Taos": ["S","SE","SEL"],
+    "Tiguan": ["S","SE","SE R-Line Black","SEL R-Line"],
+    "Atlas": ["SE","SE Technology","Peak Edition","SEL","SEL Premium R-Line"],
+    "ID.4": ["Standard","Pro","Pro S","AWD Pro"]
+  },
+  "Volvo": {
+    "S60": ["Core","Plus","Ultimate"],
+    "S90": ["Core","Plus","Ultimate"],
+    "XC40": ["Core","Plus","Ultimate"],
+    "XC60": ["Core","Plus","Ultimate"],
+    "XC90": ["Core","Plus","Ultimate"],
+    "V60 Cross Country": ["Core","Plus","Ultimate"]
   }
 };
 
