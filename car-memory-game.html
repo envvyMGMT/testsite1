@@ -3,25 +3,14 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta name="description" content="A text-based study app for learning the 2025 model-year lineups (models and trims) of 27 major car brands: flashcards plus three quiz modes with streaks and spaced repetition." />
-<title>Trim Trainer — Learn Car Models &amp; Trims</title>
+<meta name="description" content="A text study app for learning 2025 car models, trim ladders, and what each trim adds, across Subaru, Toyota, Hyundai, Chevrolet and Mazda." />
+<title>Trim Trainer — Learn Car Models, Trims &amp; Features</title>
 <style>
 :root {
-  --paper: #f6f5f1;
-  --card: #ffffff;
-  --ink: #1b1a17;
-  --char: #34322d;
-  --stone: #6f6c64;
-  --mist: #a5a29a;
-  --line: #e4e1d9;
-  --bone: #edeae2;
-  --accent: #2f5d3f;
-  --accent-2: #274d34;
-  --accent-soft: #e7efe8;
-  --accent-line: #cfe0d3;
-  --gold: #a9781f;
-  --danger: #b4514b;
-  --danger-soft: #f6e7e5;
+  --paper: #f6f5f1; --card: #ffffff; --ink: #1b1a17; --char: #34322d;
+  --stone: #6f6c64; --mist: #a5a29a; --line: #e4e1d9; --bone: #edeae2;
+  --accent: #2f5d3f; --accent-2: #274d34; --accent-soft: #e7efe8; --accent-line: #cfe0d3;
+  --gold: #a9781f; --danger: #b4514b; --danger-soft: #f6e7e5;
   --shadow: 0 1px 2px rgba(20,18,14,.05), 0 10px 30px rgba(20,18,14,.07);
 }
 @media (prefers-color-scheme: dark) {
@@ -55,23 +44,17 @@ body {
   -webkit-font-smoothing: antialiased; padding-bottom: 4rem;
 }
 .serif { font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, "Times New Roman", serif; }
-.wrap { max-width: 760px; margin: 0 auto; padding: 0 1.25rem; }
 
-/* header */
-header { max-width: 760px; margin: 0 auto; padding: 2.75rem 1.25rem 1.25rem; text-align: center; }
+header { max-width: 780px; margin: 0 auto; padding: 2.75rem 1.25rem 1.25rem; text-align: center; }
 .eyebrow { font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.85rem; font-weight: 600; }
 h1 {
   font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
   font-size: clamp(1.9rem, 5vw, 3rem); font-weight: 600; line-height: 1.04;
-  letter-spacing: -0.02em; margin: 0 auto 0.85rem; max-width: 18ch; text-wrap: balance;
+  letter-spacing: -0.02em; margin: 0 auto 0.85rem; max-width: 20ch; text-wrap: balance;
 }
-header p { color: var(--stone); max-width: 52ch; margin: 0 auto; font-size: 1rem; }
+header p { color: var(--stone); max-width: 54ch; margin: 0 auto; font-size: 1rem; }
 
-/* mode tabs */
-.modes {
-  max-width: 760px; margin: 1.5rem auto 0; padding: 0 1.25rem;
-  display: flex; gap: 0.5rem; flex-wrap: wrap; justify-content: center;
-}
+.modes { max-width: 780px; margin: 1.5rem auto 0; padding: 0 1.25rem; display: flex; gap: 0.5rem; flex-wrap: wrap; justify-content: center; }
 .mode-btn {
   font: inherit; font-size: 0.9rem; font-weight: 500; padding: 0.5rem 0.95rem;
   border: 1px solid var(--line); border-radius: 999px; background: var(--card);
@@ -81,11 +64,7 @@ header p { color: var(--stone); max-width: 52ch; margin: 0 auto; font-size: 1rem
 .mode-btn.active { background: var(--ink); color: var(--paper); border-color: var(--ink); }
 .mode-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 
-/* controls */
-.controls {
-  max-width: 760px; margin: 1rem auto 0; padding: 0 1.25rem;
-  display: flex; gap: 0.75rem; align-items: flex-end; justify-content: center; flex-wrap: wrap;
-}
+.controls { max-width: 780px; margin: 1rem auto 0; padding: 0 1.25rem; display: flex; gap: 0.75rem; align-items: flex-end; justify-content: center; flex-wrap: wrap; }
 .control-group { display: flex; flex-direction: column; gap: 0.3rem; }
 .control-group label { font-size: 0.66rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--stone); }
 select, .btn {
@@ -98,47 +77,29 @@ select:hover, .btn:hover { border-color: var(--stone); }
 .btn.ghost:hover { background: var(--bone); }
 select:focus-visible, .btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 
-/* stats */
-.stats {
-  max-width: 760px; margin: 1.5rem auto 0; padding: 0 1.25rem;
-  display: grid; grid-template-columns: repeat(5, 1fr); gap: 0.6rem;
-}
+.stats { max-width: 780px; margin: 1.5rem auto 0; padding: 0 1.25rem; display: grid; grid-template-columns: repeat(5, 1fr); gap: 0.6rem; }
 .stats.hidden { display: none; }
-.stat {
-  background: var(--card); border: 1px solid var(--line); border-radius: 10px;
-  padding: 0.6rem 0.4rem; text-align: center;
-}
-.stat-value {
-  font-family: "Iowan Old Style", Palatino, Georgia, serif; font-size: 1.35rem;
-  font-weight: 600; line-height: 1; font-variant-numeric: tabular-nums;
-}
+.stat { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 0.6rem 0.4rem; text-align: center; }
+.stat-value { font-family: "Iowan Old Style", Palatino, Georgia, serif; font-size: 1.35rem; font-weight: 600; line-height: 1; font-variant-numeric: tabular-nums; }
 .stat-label { font-size: 0.6rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--stone); margin-top: 0.3rem; }
 
-/* stage */
-.stage { max-width: 760px; margin: 1.5rem auto 0; padding: 0 1.25rem; }
-.panel {
-  background: var(--card); border: 1px solid var(--line); border-radius: 16px;
-  box-shadow: var(--shadow); padding: 2rem 1.75rem;
-}
+.stage { max-width: 780px; margin: 1.5rem auto 0; padding: 0 1.25rem; }
+.panel { background: var(--card); border: 1px solid var(--line); border-radius: 16px; box-shadow: var(--shadow); padding: 2rem 1.75rem; }
 
-/* flashcards */
 .fc-progress { font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--stone); text-align: center; }
 .fc-brand { text-align: center; color: var(--gold); font-weight: 600; letter-spacing: 0.04em; margin-top: 1.1rem; font-size: 0.92rem; }
-.fc-model {
-  font-family: "Iowan Old Style", Palatino, Georgia, serif; text-align: center;
-  font-size: clamp(1.8rem, 6vw, 2.6rem); font-weight: 600; letter-spacing: -0.01em; margin: 0.15rem 0 0;
-}
-.fc-hint { text-align: center; color: var(--mist); font-size: 0.85rem; margin-top: 0.6rem; }
-.fc-trims {
-  margin: 1.4rem auto 0; max-width: 30rem; text-align: center; font-size: 1.05rem; color: var(--char);
-  line-height: 1.9; padding: 1rem 1.2rem; background: var(--accent-soft); border: 1px solid var(--accent-line); border-radius: 12px;
-}
-.fc-trims b { font-weight: 600; color: var(--ink); }
+.fc-model { font-family: "Iowan Old Style", Palatino, Georgia, serif; text-align: center; font-size: clamp(1.7rem, 5.5vw, 2.5rem); font-weight: 600; letter-spacing: -0.01em; margin: 0.1rem 0 0; }
+.fc-trim { text-align: center; font-size: 1.1rem; color: var(--char); margin-top: 0.35rem; font-weight: 500; }
+.fc-trim b { color: var(--accent-2); }
+.fc-hint { text-align: center; color: var(--mist); font-size: 0.85rem; margin-top: 0.7rem; }
+.fc-reveal-box { margin: 1.4rem auto 0; max-width: 34rem; padding: 1.1rem 1.3rem; background: var(--accent-soft); border: 1px solid var(--accent-line); border-radius: 12px; }
+.fc-reveal-box.trims { text-align: center; font-size: 1.05rem; color: var(--char); line-height: 1.9; }
+.fc-reveal-box .cap { display: block; font-size: 0.66rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); font-weight: 600; margin-bottom: 0.6rem; }
+.feat-list { list-style: none; display: grid; gap: 0.5rem; }
+.feat-list li { position: relative; padding-left: 1.4rem; font-size: 0.98rem; color: var(--char); }
+.feat-list li::before { content: "→"; position: absolute; left: 0; color: var(--accent-2); font-weight: 600; }
 .fc-actions { display: flex; gap: 0.6rem; justify-content: center; margin-top: 1.6rem; flex-wrap: wrap; }
-.big {
-  font: inherit; font-size: 0.98rem; font-weight: 600; padding: 0.7rem 1.4rem; border-radius: 10px;
-  cursor: pointer; border: 1px solid var(--line); background: var(--card); color: var(--ink); transition: all .12s;
-}
+.big { font: inherit; font-size: 0.98rem; font-weight: 600; padding: 0.7rem 1.4rem; border-radius: 10px; cursor: pointer; border: 1px solid var(--line); background: var(--card); color: var(--ink); transition: all .12s; }
 .big:hover { border-color: var(--stone); }
 .big:active { transform: translateY(1px); }
 .big.primary { background: var(--accent); color: #fff; border-color: var(--accent); }
@@ -147,26 +108,15 @@ select:focus-visible, .btn:focus-visible { outline: 2px solid var(--accent); out
 .big:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 .hidden { display: none !important; }
 
-/* quiz */
-.q-prompt {
-  font-family: "Iowan Old Style", Palatino, Georgia, serif; font-size: clamp(1.3rem, 4vw, 1.7rem);
-  text-align: center; line-height: 1.3; font-weight: 500; text-wrap: balance;
-}
+.q-prompt { font-family: "Iowan Old Style", Palatino, Georgia, serif; font-size: clamp(1.25rem, 3.6vw, 1.55rem); text-align: center; line-height: 1.3; font-weight: 500; text-wrap: balance; }
 .q-prompt b { color: var(--gold); }
-.q-sub { text-align: center; color: var(--stone); font-size: 0.85rem; margin-top: 0.4rem; }
-.q-options { display: grid; gap: 0.6rem; margin-top: 1.5rem; }
-.opt {
-  font: inherit; font-size: 1rem; text-align: left; padding: 0.85rem 1rem 0.85rem 3rem; position: relative;
-  border: 1px solid var(--line); border-radius: 10px; background: var(--card); color: var(--ink);
-  cursor: pointer; transition: border-color .12s, background .12s;
-}
+.q-feature { margin: 0.9rem auto 0; max-width: 30rem; text-align: center; font-size: 1.1rem; font-weight: 600; color: var(--accent-2); padding: 0.7rem 1rem; background: var(--accent-soft); border: 1px solid var(--accent-line); border-radius: 10px; }
+.q-sub { text-align: center; color: var(--stone); font-size: 0.85rem; margin-top: 0.5rem; }
+.q-options { display: grid; gap: 0.6rem; margin-top: 1.4rem; }
+.opt { font: inherit; font-size: 1rem; text-align: left; padding: 0.85rem 1rem 0.85rem 3rem; position: relative; border: 1px solid var(--line); border-radius: 10px; background: var(--card); color: var(--ink); cursor: pointer; transition: border-color .12s, background .12s; }
 .opt:hover:not(:disabled) { border-color: var(--stone); background: var(--bone); }
 .opt:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-.opt .key {
-  position: absolute; left: 0.85rem; top: 50%; transform: translateY(-50%);
-  width: 1.5rem; height: 1.5rem; border-radius: 6px; border: 1px solid var(--line);
-  display: grid; place-items: center; font-size: 0.78rem; color: var(--stone); font-variant-numeric: tabular-nums;
-}
+.opt .key { position: absolute; left: 0.85rem; top: 50%; transform: translateY(-50%); width: 1.5rem; height: 1.5rem; border-radius: 6px; border: 1px solid var(--line); display: grid; place-items: center; font-size: 0.78rem; color: var(--stone); font-variant-numeric: tabular-nums; }
 .opt.correct { border-color: var(--accent); background: var(--accent-soft); }
 .opt.correct .key { border-color: var(--accent); background: var(--accent); color: #fff; }
 .opt.wrong { border-color: var(--danger); background: var(--danger-soft); }
@@ -178,38 +128,38 @@ select:focus-visible, .btn:focus-visible { outline: 2px solid var(--accent); out
 .q-feedback b { font-weight: 600; }
 .q-next-wrap { display: flex; justify-content: center; margin-top: 1.1rem; }
 
-/* study */
-.study { max-width: 760px; margin: 2.25rem auto 0; padding: 0 1.25rem; }
-.study-head { border-bottom: 1px solid var(--line); padding-bottom: 0.6rem; margin-bottom: 1rem; display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; }
+.study { max-width: 780px; margin: 2.25rem auto 0; padding: 0 1.25rem; }
+.study-head { border-bottom: 1px solid var(--line); padding-bottom: 0.6rem; margin-bottom: 1rem; }
 .study-head h2 { font-family: "Iowan Old Style", Palatino, Georgia, serif; font-weight: 600; font-size: 1.25rem; }
 .study-brand { margin-bottom: 1.4rem; }
 .study-brand h3 { font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.5rem; }
-.study-row { display: grid; grid-template-columns: 120px 1fr; gap: 1rem; padding: 0.45rem 0; border-bottom: 1px solid var(--line); align-items: baseline; }
+.study-row { display: grid; grid-template-columns: 130px 1fr; gap: 1rem; padding: 0.45rem 0; border-bottom: 1px solid var(--line); align-items: baseline; }
 .study-row .m { font-family: "Iowan Old Style", Palatino, Georgia, serif; font-weight: 600; font-size: 1rem; }
 .study-row .t { font-size: 0.88rem; color: var(--stone); }
 
-footer { max-width: 760px; margin: 3rem auto 0; padding: 1.5rem 1.25rem 0; text-align: center; color: var(--mist); font-size: 0.76rem; border-top: 1px solid var(--line); }
+footer { max-width: 780px; margin: 3rem auto 0; padding: 1.5rem 1.25rem 0; text-align: center; color: var(--mist); font-size: 0.76rem; border-top: 1px solid var(--line); }
 footer kbd { font-family: inherit; background: var(--bone); border: 1px solid var(--line); border-radius: 5px; padding: 0.05rem 0.35rem; font-size: 0.72rem; color: var(--char); }
 
 @media (max-width: 560px) {
   .stats { grid-template-columns: repeat(3, 1fr); }
   .panel { padding: 1.5rem 1.1rem; }
   .opt { padding-left: 2.7rem; }
+  .study-row { grid-template-columns: 100px 1fr; }
 }
 </style>
 </head>
 <body>
 <header>
   <div class="eyebrow">Trim Trainer</div>
-  <h1>Learn every brand's models &amp; trims.</h1>
-  <p>All text — no pictures needed. Pick a drill, answer fast, and anything you miss comes back around until it sticks. 27 brands, 167 models · <strong>2025 model year (US)</strong>.</p>
+  <h1>Learn the models, trims &amp; features.</h1>
+  <p>Five brands, all text — no pictures. Drill the trim ladders, then learn what each trim actually gets you. Miss one and it comes back around until it sticks.</p>
 </header>
 
 <nav class="modes" id="modes">
-  <button class="mode-btn active" data-mode="flash">Flashcards</button>
-  <button class="mode-btn" data-mode="brand">Name the brand</button>
-  <button class="mode-btn" data-mode="trim">Spot the real trim</button>
-  <button class="mode-btn" data-mode="model">Spot the model</button>
+  <button class="mode-btn active" data-mode="features">Trim features</button>
+  <button class="mode-btn" data-mode="match">Match the feature</button>
+  <button class="mode-btn" data-mode="trims">Trim ladders</button>
+  <button class="mode-btn" data-mode="spot">Spot the trim</button>
 </nav>
 
 <div class="controls">
@@ -221,7 +171,7 @@ footer kbd { font-family: inherit; background: var(--bone); border: 1px solid va
   <button class="btn ghost" id="toggleStudy">Study list</button>
 </div>
 
-<div class="stats" id="stats">
+<div class="stats hidden" id="stats">
   <div class="stat"><div class="stat-value" id="s-correct">0</div><div class="stat-label">Correct</div></div>
   <div class="stat"><div class="stat-value" id="s-streak">0</div><div class="stat-label">Streak</div></div>
   <div class="stat"><div class="stat-value" id="s-best">0</div><div class="stat-label">Best</div></div>
@@ -238,52 +188,12 @@ footer kbd { font-family: inherit; background: var(--bone); border: 1px solid va
 
 <footer>
   Keys: <kbd>1</kbd>–<kbd>4</kbd> answer · <kbd>Space</kbd> reveal / next · <kbd>Enter</kbd> continue.<br>
-  Trim data reflects 2025 model-year US lineups (verified for redesigned models against dealer/Edmunds listings); for study practice.
+  Trim &amp; feature data reflect 2025 model-year US lineups (verified against Edmunds/dealer listings). A study aid — confirm exact equipment with the manufacturer.
 </footer>
 
 <script>
+// ============ trims: brand -> model -> [trims] ============
 const DATA = {
-  "Acura": {
-    "Integra": ["Base","A-Spec","A-Spec Technology","Type S"],
-    "TLX": ["Technology","A-Spec","Type S"],
-    "MDX": ["Base","Technology","A-Spec","Advance","Type S"],
-    "RDX": ["Base","Technology","A-Spec","Advance"],
-    "ZDX": ["A-Spec","Type S"]
-  },
-  "Audi": {
-    "A3": ["Premium","Premium Plus","Prestige"],
-    "A4": ["Premium","Premium Plus","Prestige"],
-    "A6": ["Premium","Premium Plus","Prestige"],
-    "A5": ["Premium","Premium Plus","Prestige"],
-    "Q3": ["Premium","Premium Plus"],
-    "Q5": ["Premium","Premium Plus","Prestige"],
-    "Q7": ["Premium","Premium Plus","Prestige"],
-    "A7": ["Premium Plus","Prestige"]
-  },
-  "BMW": {
-    "2 Series": ["230i","M240i","M2"],
-    "3 Series": ["330i","M340i","M3"],
-    "4 Series": ["430i","M440i","M4"],
-    "5 Series": ["530i","540i","M5"],
-    "X3": ["30 xDrive","M50 xDrive"],
-    "X5": ["xDrive40i","xDrive50e","M60i","X5 M"],
-    "X7": ["xDrive40i","M60i","Alpina XB7"]
-  },
-  "Buick": {
-    "Encore GX": ["Preferred","Sport Touring","Avenir"],
-    "Envista": ["Preferred","Sport Touring","Avenir"],
-    "Envision": ["Preferred","Sport Touring","Avenir"],
-    "Enclave": ["Preferred","Sport Touring","Avenir"]
-  },
-  "Cadillac": {
-    "CT4": ["Luxury","Premium Luxury","Sport","V-Series"],
-    "CT5": ["Luxury","Premium Luxury","Sport","V-Series","Blackwing"],
-    "XT4": ["Luxury","Premium Luxury","Sport"],
-    "XT5": ["Luxury","Premium Luxury","Sport"],
-    "XT6": ["Luxury","Premium Luxury","Sport"],
-    "Escalade": ["Luxury","Premium Luxury","Sport","Platinum","V-Series"],
-    "Lyriq": ["Tech","Luxury","Sport"]
-  },
   "Chevrolet": {
     "Silverado": ["WT","Custom","LT","RST","LTZ","High Country","ZR2"],
     "Colorado": ["WT","LT","Trail Boss","Z71","ZR2"],
@@ -296,132 +206,23 @@ const DATA = {
     "Malibu": ["LS","RS","LT"],
     "Corvette": ["Stingray","E-Ray","Z06","ZR1"]
   },
-  "Chrysler": {
-    "Pacifica": ["Select","Limited","Pinnacle"],
-    "Voyager": ["LX"]
-  },
-  "Dodge": {
-    "Charger Daytona": ["R/T","Scat Pack"],
-    "Durango": ["SXT","GT","R/T","Citadel","SRT 392","SRT Hellcat"],
-    "Hornet": ["GT","GT Plus","R/T","R/T Plus"]
-  },
-  "Ford": {
-    "F-150": ["XL","XLT","Lariat","King Ranch","Platinum","Raptor"],
-    "Mustang": ["EcoBoost","GT","Dark Horse"],
-    "Explorer": ["Active","XLT","Limited","ST","Platinum"],
-    "Escape": ["Active","ST-Line","Platinum"],
-    "Bronco": ["Big Bend","Black Diamond","Outer Banks","Badlands","Wildtrak","Raptor"],
-    "Bronco Sport": ["Big Bend","Heritage","Outer Banks","Badlands"],
-    "Maverick": ["XL","XLT","Lariat","Tremor"],
-    "Ranger": ["XL","XLT","Lariat","Raptor"]
-  },
-  "Genesis": {
-    "G70": ["Standard","Sport","Sport Prestige"],
-    "G80": ["Standard","Advanced","Prestige"],
-    "G90": ["3.5T","3.5T E-Supercharger"],
-    "GV60": ["Advanced","Performance"],
-    "GV70": ["Standard","Advanced","Sport","Sport Prestige"],
-    "GV80": ["2.5T","3.5T","Advanced","Prestige"]
-  },
-  "GMC": {
-    "Sierra 1500": ["Pro","SLE","Elevation","SLT","AT4","Denali","AT4X"],
-    "Canyon": ["Elevation","AT4","Denali","AT4X"],
-    "Terrain": ["SLE","SLT","AT4","Denali"],
-    "Acadia": ["Elevation","AT4","Denali"],
-    "Yukon": ["SLE","SLT","AT4","Denali","Denali Ultimate"]
-  },
-  "Honda": {
-    "Civic": ["LX","Sport","Sport Hybrid","Sport Touring Hybrid","Si","Type R"],
-    "Accord": ["LX","SE","EX-L","Sport","Touring"],
-    "CR-V": ["LX","EX","EX-L","Sport","Sport Touring"],
-    "Pilot": ["Sport","EX-L","Touring","Elite","TrailSport"],
-    "HR-V": ["LX","Sport","EX-L"],
-    "Passport": ["EX-L","TrailSport","Elite"],
-    "Odyssey": ["EX-L","Sport","Touring","Elite"]
-  },
   "Hyundai": {
     "Elantra": ["SE","SEL","N Line","Limited","N"],
     "Sonata": ["SE","SEL","N Line","Limited"],
     "Kona": ["SE","SEL","N Line","Limited"],
-    "Tucson": ["SE","SEL","XRT","N Line","Limited"],
+    "Tucson": ["SE","SEL","XRT","Limited"],
     "Santa Fe": ["SE","SEL","XRT","Limited","Calligraphy"],
     "Palisade": ["SE","SEL","XRT","Limited","Calligraphy"],
     "Santa Cruz": ["SE","SEL","XRT","Limited"],
     "Ioniq 5": ["SE","SEL","Limited"]
   },
-  "Jeep": {
-    "Wrangler": ["Sport","Willys","Sahara","Rubicon","Rubicon 392"],
-    "Grand Cherokee": ["Laredo","Limited","Overland","Summit","Trailhawk"],
-    "Cherokee": ["Latitude","Altitude","Limited","Trailhawk"],
-    "Compass": ["Sport","Latitude","Limited","Trailhawk"],
-    "Gladiator": ["Sport","Willys","Mojave","Rubicon"],
-    "Wagoneer": ["Series I","Series II","Series III"]
-  },
-  "Kia": {
-    "K4": ["LX","LXS","GT-Line","GT-Line Turbo"],
-    "K5": ["LXS","GT-Line","EX","GT"],
-    "Soul": ["LX","S","GT-Line","EX","X-Line"],
-    "Seltos": ["LX","S","EX","X-Line","SX"],
-    "Sportage": ["LX","EX","X-Line","SX","X-Pro"],
-    "Sorento": ["LX","S","EX","SX","X-Line","X-Pro"],
-    "Telluride": ["LX","S","EX","SX","X-Line","X-Pro"],
-    "Carnival": ["LX","EX","SX","SX Prestige"]
-  },
-  "Lexus": {
-    "ES": ["250","350","350 F Sport","300h"],
-    "IS": ["300","350 F Sport","500 F Sport Performance"],
-    "RX": ["350","350 F Sport","450h+","500h F Sport"],
-    "NX": ["250","350 F Sport","350h","450h+"],
-    "GX": ["Premium","Overtrail","Luxury"],
-    "TX": ["350","350h","500h F Sport"],
-    "LX": ["600","F Sport","Ultra Luxury"]
-  },
-  "Lincoln": {
-    "Corsair": ["Premiere","Reserve","Grand Touring"],
-    "Nautilus": ["Premiere","Reserve","Black Label"],
-    "Aviator": ["Premiere","Reserve","Black Label"],
-    "Navigator": ["Reserve","Black Label"]
-  },
   "Mazda": {
     "Mazda3": ["S","Select","Preferred","Premium","Turbo"],
     "CX-30": ["S","Select","Preferred","Premium","Turbo"],
     "CX-5": ["S","Select","Preferred","Premium","Turbo Signature"],
-    "CX-50": ["S","Select","Preferred","Premium","Turbo Meridian"],
+    "CX-50": ["Select","Preferred","Premium","Turbo Meridian"],
     "CX-90": ["Select","Preferred","Premium","Premium Plus","Turbo S"],
     "MX-5 Miata": ["Sport","Club","Grand Touring"]
-  },
-  "Mercedes-Benz": {
-    "C-Class": ["C 300","AMG C 43","AMG C 63"],
-    "E-Class": ["E 350","E 450","AMG E 53"],
-    "S-Class": ["S 500","S 580","Maybach"],
-    "GLA": ["GLA 250","AMG GLA 35","AMG GLA 45"],
-    "GLB": ["GLB 250","AMG GLB 35"],
-    "GLC": ["GLC 300","AMG GLC 43","AMG GLC 63"],
-    "GLE": ["GLE 350","GLE 450","AMG GLE 53"]
-  },
-  "Nissan": {
-    "Sentra": ["S","SV","SR"],
-    "Altima": ["S","SV","SR","SL"],
-    "Rogue": ["S","SV","SL","Platinum"],
-    "Murano": ["SV","SL","Platinum"],
-    "Pathfinder": ["S","SV","SL","Platinum","Rock Creek"],
-    "Frontier": ["S","SV","PRO-X","PRO-4X","SL"],
-    "Titan": ["S","SV","PRO-4X","Platinum Reserve"],
-    "Kicks": ["S","SV","SR"],
-    "Z": ["Sport","Performance","Nismo"]
-  },
-  "Porsche": {
-    "911": ["Carrera","Carrera S","Turbo","Turbo S","GT3"],
-    "718 Cayman": ["Base","S","GTS 4.0","GT4 RS"],
-    "Cayenne": ["Base","S","GTS","Turbo GT"],
-    "Macan": ["Base","S","GTS","Turbo"],
-    "Panamera": ["Base","4S","GTS","Turbo E-Hybrid"],
-    "Taycan": ["Base","4S","Turbo","Turbo S"]
-  },
-  "Ram": {
-    "1500": ["Tradesman","Big Horn","Laramie","Rebel","RHO","Longhorn","Limited","Tungsten"],
-    "2500": ["Tradesman","Big Horn","Laramie","Power Wagon","Longhorn","Limited"],
-    "3500": ["Tradesman","Big Horn","Laramie","Longhorn","Limited"]
   },
   "Subaru": {
     "Impreza": ["Base","Sport","RS"],
@@ -431,93 +232,171 @@ const DATA = {
     "Ascent": ["Base","Premium","Onyx","Limited","Touring"],
     "WRX": ["Base","Premium","Limited","GT"]
   },
-  "Tesla": {
-    "Model 3": ["RWD","Long Range","Performance"],
-    "Model Y": ["RWD","Long Range","Performance"],
-    "Model S": ["Long Range","Plaid"],
-    "Model X": ["Long Range","Plaid"],
-    "Cybertruck": ["Rear-Wheel Drive","All-Wheel Drive","Cyberbeast"]
-  },
   "Toyota": {
     "Corolla": ["L","LE","SE","XLE","XSE"],
     "Camry": ["LE","SE","XLE","XSE"],
     "Prius": ["LE","XLE","Limited"],
-    "RAV4": ["LE","XLE","Adventure","TRD Off-Road","Limited"],
+    "RAV4": ["LE","XLE","XLE Premium","Adventure","TRD Off-Road","Limited"],
     "Highlander": ["L","LE","XLE","XSE","Limited","Platinum"],
     "4Runner": ["SR5","TRD Sport","TRD Off-Road","Limited","Platinum","TRD Pro","Trailhunter"],
     "Tacoma": ["SR","SR5","TRD PreRunner","TRD Sport","TRD Off-Road","Limited","TRD Pro","Trailhunter"],
     "Tundra": ["SR","SR5","Limited","Platinum","1794","TRD Pro","Capstone"]
-  },
-  "Volkswagen": {
-    "Jetta": ["S","Sport","SE","SEL","GLI"],
-    "Golf GTI": ["S","SE","Autobahn"],
-    "Taos": ["S","SE","SEL"],
-    "Tiguan": ["S","SE","SE R-Line Black","SEL R-Line"],
-    "Atlas": ["SE","SE Technology","Peak Edition","SEL","SEL Premium R-Line"],
-    "ID.4": ["Standard","Pro","Pro S","AWD Pro"]
-  },
-  "Volvo": {
-    "S60": ["Core","Plus","Ultimate"],
-    "S90": ["Core","Plus","Ultimate"],
-    "XC40": ["Core","Plus","Ultimate"],
-    "XC60": ["Core","Plus","Ultimate"],
-    "XC90": ["Core","Plus","Ultimate"],
-    "V60 Cross Country": ["Core","Plus","Ultimate"]
   }
 };
 
-// ---- flatten ----
+// ============ features: brand -> model -> trim -> [what that trim adds] ============
+const FEATURES = {
+  "Subaru": {
+    "Forester": {
+      "Base": ["Standard EyeSight safety","17-inch wheels","Roof rails","Cloth upholstery"],
+      "Premium": ["Power moonroof","Heated front seats","X-MODE + hill descent","10-way power driver seat"],
+      "Sport": ["Blacked-out exterior accents","Water-repellent upholstery","Sport-specific styling","LED fog lights"],
+      "Limited": ["Leather-trimmed seats","Hands-free power liftgate","Paddle shifters"],
+      "Touring": ["Nappa leather seats","Ventilated front seats","360° surround-view camera","Harman Kardon audio"],
+      "Wilderness": ["Raised suspension","All-terrain tires","Skid plates","StarTex water-repellent seats"]
+    },
+    "Crosstrek": {
+      "Base": ["Standard EyeSight safety","Roof rails","Cloth seats"],
+      "Premium": ["2.5L engine + dual X-MODE","Larger touchscreen","LED fog lights","Keyless access + push-button start"],
+      "Sport": ["Yellow exterior accents","18-inch wheels","Heated front seats","Leather-wrapped steering wheel"],
+      "Limited": ["Leather-trimmed upholstery","Power driver's seat","Blind-spot detection"],
+      "Wilderness": ["Raised suspension (9.3\" clearance)","Tow-point bumpers","StarTex water-repellent seats","3,500-lb towing"]
+    },
+    "Outback": {
+      "Base": ["Standard EyeSight safety","Cloth seats"],
+      "Premium": ["Larger touchscreen","Heated front seats","Retractable cargo cover","Leather-wrapped wheel"],
+      "Limited": ["Leather upholstery","Heated rear seats","12-way power driver seat","Power moonroof + heated wheel"],
+      "Touring": ["Ventilated Nappa leather seats","Heated steering wheel","Top-tier tech"],
+      "Wilderness": ["All-terrain tires","Raised suspension (9.5\" clearance)","Tow-point bumpers","StarTex upholstery"]
+    }
+  },
+  "Toyota": {
+    "RAV4": {
+      "LE": ["LED headlights","17-inch steel wheels","Toyota Safety Sense 2.5","8-inch touchscreen"],
+      "XLE": ["17-inch alloy wheels","Dual-zone auto climate","Blind-spot monitor","Push-button start"],
+      "XLE Premium": ["Power moonroof","SofTex-trimmed seats","19-inch wheels","Power liftgate"],
+      "Adventure": ["Raised ride height","Roof rails","18-inch wheels","Tow-prep package"],
+      "TRD Off-Road": ["TRD-tuned suspension","All-terrain tires","TRD 18-inch wheels","Red interior stitching"],
+      "Limited": ["Heated & ventilated front seats","Panoramic glass roof","JBL 11-speaker audio","Hands-free power liftgate"]
+    },
+    "Camry": {
+      "LE": ["Hybrid standard","16-inch wheels","Fabric seats","Toyota Safety Sense 3.0"],
+      "SE": ["Sport-tuned suspension","Sport mesh grille","Black wheels"],
+      "XLE": ["Leather & microfiber seats","12.3-inch touchscreen","Heated front seats"],
+      "XSE": ["19-inch alloy wheels","Sport-tuned suspension","Dual chrome exhaust tips"]
+    },
+    "Tacoma": {
+      "SR": ["2.4L turbo engine","8-inch touchscreen","Toyota Safety Sense 3.0"],
+      "SR5": ["Upgraded infotainment","Body-color trim","Higher tow configuration"],
+      "TRD PreRunner": ["Lifted front suspension","Underbody skid plates","Desert-running focus"],
+      "TRD Sport": ["Sport-tuned suspension","12.3-inch screen","Hood scoop"],
+      "TRD Off-Road": ["Bilstein shocks","Locking rear differential","Crawl Control + Multi-Terrain Select"],
+      "Limited": ["i-Force Max hybrid","Adaptive suspension","Leather + wood trim"],
+      "TRD Pro": ["FOX QS3 coilovers","i-Force Max standard","IsoDynamic front seats"],
+      "Trailhunter": ["ARB Old Man Emu suspension","Overland-ready gear","Rugged terrain tires"]
+    }
+  },
+  "Hyundai": {
+    "Tucson": {
+      "SE": ["Wireless Apple CarPlay/Android Auto","187-hp engine","17-inch wheels"],
+      "SEL": ["Power driver's seat","Wireless device charging","Heated front seats"],
+      "XRT": ["Rugged body cladding","Black/dark-chrome trim","XRT-exclusive wheels","Tow hitch"],
+      "Limited": ["Leather seating","Ventilated front seats","Panoramic sunroof","Bose audio + head-up display"]
+    },
+    "Santa Fe": {
+      "SE": ["Hands-free power liftgate","18-inch wheels","12.3-inch touchscreen"],
+      "SEL": ["Heated front seats","Power driver's seat","Dual-zone climate","Wireless charging"],
+      "XRT": ["Standard AWD","All-terrain tires","+1.3\" ground clearance","4,500-lb towing"],
+      "Limited": ["Ventilated leather seats","Bose audio","Surround-view monitor","Blind-spot camera"],
+      "Calligraphy": ["Captain's chairs (6-seat)","Premium Nappa materials","Top-tier luxury features"]
+    }
+  },
+  "Chevrolet": {
+    "Silverado": {
+      "WT": ["TurboMax engine","Chevy Safety Assist","Work-truck focus"],
+      "Custom": ["7-inch touchscreen","10-way power driver seat","120-volt outlet"],
+      "LT": ["13.4-inch touchscreen w/ Google","LED headlamps","Style upgrades"],
+      "RST": ["Street/sport styling","Available 6.2L V8","13.4-inch premium screen"],
+      "LTZ": ["Premium interior finishes","Leather seating","Advanced towing tech"],
+      "High Country": ["Leather + open-pore wood trim","Power sliding rear window","Available Super Cruise"],
+      "ZR2": ["33-inch off-road tires","Multimatic DSSV dampers","Skid plates + off-road bumper"]
+    },
+    "Equinox": {
+      "LT": ["17-inch wheels","11.3-inch touchscreen","Remote start","Google built-in"],
+      "RS": ["Blacked-out accents","19-inch machined wheels","Flat-bottom heated wheel","Evotex seating"],
+      "Activ": ["Raised ride height","All-terrain tires","Roof rails","Off-road styling"]
+    }
+  },
+  "Mazda": {
+    "CX-5": {
+      "S": ["187-hp Skyactiv-G engine","Cloth seats","Leather-wrapped wheel"],
+      "Select": ["Dual-zone auto climate","Heated front seats","Rear privacy glass"],
+      "Preferred": ["Power moonroof","Power liftgate","Leather-trimmed seats","8-way power driver seat"],
+      "Premium": ["Wireless CarPlay/Android Auto","Wireless charger","Ventilated front seats","Digital gauge cluster"],
+      "Turbo Signature": ["Turbo engine (up to 256 hp)","Nappa leather","Genuine wood trim","Mazda navigation"]
+    },
+    "CX-50": {
+      "Select": ["LED headlights","10.25-inch display","i-Activsense safety"],
+      "Preferred": ["Heated front seats","Power liftgate","Wireless charging"],
+      "Premium": ["Panoramic sunroof","Bose premium audio","Wireless charger"],
+      "Turbo Meridian": ["Turbo engine (256 hp)","Adaptive headlights","Off-road-ready focus"]
+    }
+  }
+};
+
+// ============ flatten ============
 const BRANDS = Object.keys(DATA);
-const ENTRIES = [];              // {brand, model, trims}
+const ENTRIES = [];
 BRANDS.forEach(b => Object.entries(DATA[b]).forEach(([m, t]) => ENTRIES.push({ brand: b, model: m, trims: t })));
 const ALL_TRIMS = [...new Set(ENTRIES.flatMap(e => e.trims))];
 
+const FEAT_ENTRIES = [];  // {brand, model, trim, features}
+const FEAT_MODELS = [];   // {brand, model, trims, featBy}
+Object.keys(FEATURES).forEach(b => Object.entries(FEATURES[b]).forEach(([m, trims]) => {
+  const order = DATA[b][m] || Object.keys(trims);
+  const trimList = order.filter(t => trims[t]);
+  FEAT_MODELS.push({ brand: b, model: m, trims: trimList, featBy: trims });
+  trimList.forEach(t => FEAT_ENTRIES.push({ brand: b, model: m, trim: t, features: trims[t] }));
+}));
+
 const $ = id => document.getElementById(id);
 const stage = $('stage');
+const FLASH_MODES = ['trims', 'features'];
 
-// ---- helpers ----
+// ============ helpers ============
 function shuffle(a) { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
 function pick(a) { return a[Math.floor(Math.random() * a.length)]; }
-function sampleDistinct(source, n, exclude) {
-  const ex = new Set(exclude || []);
-  const pool = shuffle(source.filter(x => !ex.has(x)));
-  return pool.slice(0, n);
-}
-function esc(s) { return String(s).replace(/[&<>]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c])); }
+function sampleDistinct(source, n, exclude) { const ex = new Set(exclude || []); return shuffle(source.filter(x => !ex.has(x))).slice(0, n); }
+function esc(s) { return String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c])); }
 
-// ---- state ----
+// ============ state ============
 const LS = 'trimTrainer.best';
-let state = {
-  mode: 'flash',
-  scope: '__all',
-  correct: 0, wrong: 0, streak: 0, best: 0,
-  pool: [], queue: [],          // quiz subjects
-  deck: [], di: 0, review: [],  // flashcards
-  current: null, answered: false
-};
+let state = { mode: 'features', scope: '__all', correct: 0, wrong: 0, streak: 0, best: 0, deck: [], di: 0, review: [], queue: [], current: null, answered: false };
 try { state.best = parseInt(localStorage.getItem(LS) || '0', 10) || 0; } catch (e) {}
 
-// populate scope dropdown
 (() => {
-  const all = document.createElement('option');
-  all.value = '__all'; all.textContent = 'All brands';
+  const all = document.createElement('option'); all.value = '__all'; all.textContent = 'All 5 brands';
   $('scope').appendChild(all);
   BRANDS.forEach(b => { const o = document.createElement('option'); o.value = b; o.textContent = b; $('scope').appendChild(o); });
 })();
 
-function buildPool() {
-  state.pool = state.scope === '__all' ? ENTRIES.slice() : ENTRIES.filter(e => e.brand === state.scope);
-  state.queue = shuffle(state.pool);
-  state.deck = shuffle(state.pool); state.di = 0; state.review = [];
+function dataPool() { return state.scope === '__all' ? ENTRIES : ENTRIES.filter(e => e.brand === state.scope); }
+function featEntryPool() { return state.scope === '__all' ? FEAT_ENTRIES : FEAT_ENTRIES.filter(e => e.brand === state.scope); }
+function featModelPool() { return state.scope === '__all' ? FEAT_MODELS : FEAT_MODELS.filter(e => e.brand === state.scope); }
+
+function initRound() {
+  if (state.mode === 'trims') state.deck = shuffle(dataPool());
+  else if (state.mode === 'features') state.deck = shuffle(featEntryPool());
+  else if (state.mode === 'spot') state.queue = shuffle(dataPool());
+  else if (state.mode === 'match') state.queue = shuffle(featModelPool());
+  state.di = 0; state.review = [];
 }
 function nextSubject() {
-  if (!state.queue.length) state.queue = shuffle(state.pool);
+  const src = state.mode === 'match' ? featModelPool() : dataPool();
+  if (!state.queue.length) state.queue = shuffle(src);
   return state.queue.shift();
 }
-function requeue(subject) {                 // spaced repetition: bring a missed item back soon
-  const at = Math.min(state.queue.length, 2 + Math.floor(Math.random() * 4));
-  state.queue.splice(at, 0, subject);
-}
+function requeue(subject) { const at = Math.min(state.queue.length, 2 + Math.floor(Math.random() * 4)); state.queue.splice(at, 0, subject); }
 
 function updateStats() {
   $('s-correct').textContent = state.correct;
@@ -533,11 +412,12 @@ function score(ok) {
   updateStats();
 }
 
-// ---- render ----
+// ============ render ============
 function render() {
-  $('stats').classList.toggle('hidden', state.mode === 'flash');
-  if (state.mode === 'flash') renderFlash();
-  else renderQuiz();
+  $('stats').classList.toggle('hidden', FLASH_MODES.includes(state.mode));
+  if (state.mode === 'trims' || state.mode === 'features') renderFlash();
+  else if (state.mode === 'spot') renderSpot();
+  else renderMatch();
 }
 
 function renderFlash() {
@@ -548,18 +428,23 @@ function renderFlash() {
         <div class="fc-model serif">Deck complete 🏁</div>
         <p style="color:var(--stone);margin-top:.5rem">You went through every card in this set.</p>
         <div class="fc-actions"><button class="big primary" id="fc-again">Go again</button></div></div>`;
-      $('fc-again').onclick = () => { buildPool(); render(); };
+      $('fc-again').onclick = () => { initRound(); render(); };
       return;
     }
   }
   const c = state.deck[state.di];
+  const isFeat = state.mode === 'features';
+  const reveal = isFeat
+    ? `<div class="fc-reveal-box hidden" id="fc-reveal-box"><span class="cap">What this trim adds</span><ul class="feat-list">${c.features.map(f => `<li>${esc(f)}</li>`).join('')}</ul></div>`
+    : `<div class="fc-reveal-box trims hidden" id="fc-reveal-box"><span class="cap">${c.trims.length} trim${c.trims.length === 1 ? '' : 's'}, low → high</span>${c.trims.map(esc).join(' &nbsp;·&nbsp; ')}</div>`;
   stage.innerHTML = `<div class="panel">
     <div class="fc-progress">Card ${state.di + 1} / ${state.deck.length}${state.review.length ? ' · ' + state.review.length + ' to review' : ''}</div>
     <div class="fc-brand">${esc(c.brand)}</div>
     <div class="fc-model serif">${esc(c.model)}</div>
-    <div class="fc-hint" id="fc-hint">What are its trims?</div>
-    <div class="fc-trims hidden" id="fc-trims"><b>${c.trims.length} trim${c.trims.length === 1 ? '' : 's'}</b><br>${c.trims.map(esc).join(' &nbsp;·&nbsp; ')}</div>
-    <div class="fc-actions" id="fc-reveal-wrap"><button class="big primary" id="fc-reveal">Show trims</button></div>
+    ${isFeat ? `<div class="fc-trim"><b>${esc(c.trim)}</b> trim</div>` : ''}
+    <div class="fc-hint" id="fc-hint">${isFeat ? 'What does this trim add?' : 'What are its trims, low to high?'}</div>
+    ${reveal}
+    <div class="fc-actions" id="fc-reveal-wrap"><button class="big primary" id="fc-reveal">${isFeat ? 'Show features' : 'Show trims'}</button></div>
     <div class="fc-actions hidden" id="fc-grade">
       <button class="big warn" id="fc-review">Review again</button>
       <button class="big primary" id="fc-got">Got it →</button>
@@ -570,37 +455,31 @@ function renderFlash() {
   $('fc-got').onclick = () => { state.di++; render(); };
 }
 function revealFlash() {
-  $('fc-trims').classList.remove('hidden');
+  $('fc-reveal-box').classList.remove('hidden');
   $('fc-hint').classList.add('hidden');
   $('fc-reveal-wrap').classList.add('hidden');
   $('fc-grade').classList.remove('hidden');
 }
 
-function renderQuiz() {
-  const c = nextSubject();
-  state.current = c; state.answered = false;
-  let prompt, sub, options, correct;
+function renderSpot() {
+  const c = nextSubject(); state.current = c; state.answered = false;
+  const correct = pick(c.trims);
+  const options = shuffle([correct, ...sampleDistinct(ALL_TRIMS, 3, c.trims)]);
+  paintQuiz(`Which is a real <b>${esc(c.brand)} ${esc(c.model)}</b> trim?`, '', 'One is real · three are from other models', options, correct, c);
+}
 
-  if (state.mode === 'brand') {
-    prompt = `Which brand makes the <b>${esc(c.model)}</b>?`;
-    sub = 'Name the brand';
-    correct = c.brand;
-    options = shuffle([correct, ...sampleDistinct(BRANDS, 3, [correct])]);
-  } else if (state.mode === 'trim') {
-    prompt = `Which is a real <b>${esc(c.brand)} ${esc(c.model)}</b> trim?`;
-    sub = 'One is real · three are from other models';
-    correct = pick(c.trims);
-    options = shuffle([correct, ...sampleDistinct(ALL_TRIMS, 3, c.trims)]);
-  } else { // model
-    prompt = `Which of these is a <b>${esc(c.brand)}</b> model?`;
-    sub = 'Spot the model that belongs to this brand';
-    correct = c.model;
-    const others = ENTRIES.filter(e => e.brand !== c.brand).map(e => e.model);
-    options = shuffle([correct, ...sampleDistinct(others, 3, [correct])]);
-  }
+function renderMatch() {
+  const m = nextSubject(); state.current = m; state.answered = false;
+  const trim = pick(m.trims.filter(t => m.featBy[t] && m.featBy[t].length));
+  const feat = pick(m.featBy[trim]);
+  const options = shuffle([trim, ...sampleDistinct(m.trims.filter(t => t !== trim), 3)]);
+  paintQuiz(`On the <b>${esc(m.brand)} ${esc(m.model)}</b>, which trim adds:`, esc(feat), 'Pick the trim that introduces this feature', options, trim, m);
+}
 
+function paintQuiz(prompt, feature, sub, options, correct, subject) {
   stage.innerHTML = `<div class="panel">
     <div class="q-prompt">${prompt}</div>
+    ${feature ? `<div class="q-feature">${feature}</div>` : ''}
     <div class="q-sub">${sub}</div>
     <div class="q-options" id="q-opts">
       ${options.map((o, i) => `<button class="opt" data-val="${esc(o)}"><span class="key">${i + 1}</span>${esc(o)}</button>`).join('')}
@@ -608,16 +487,14 @@ function renderQuiz() {
     <div class="q-feedback" id="q-fb"></div>
     <div class="q-next-wrap hidden" id="q-next-wrap"><button class="big primary" id="q-next">Next →</button></div>
   </div>`;
-
-  [...document.querySelectorAll('.opt')].forEach(btn => btn.onclick = () => answer(btn, correct, c));
-  $('q-next') && ($('q-next').onclick = render);
+  [...document.querySelectorAll('.opt')].forEach(btn => btn.onclick = () => answer(btn, correct, subject));
+  $('q-next').onclick = render;
 }
 
 function answer(btn, correct, subject) {
   if (state.answered) return;
   state.answered = true;
-  const chosen = btn.dataset.val;
-  const ok = chosen === correct;
+  const ok = btn.dataset.val === correct;
   [...document.querySelectorAll('.opt')].forEach(b => {
     b.disabled = true;
     if (b.dataset.val === correct) b.classList.add('correct');
@@ -631,56 +508,51 @@ function answer(btn, correct, subject) {
   $('q-next').focus();
 }
 
-// ---- study list ----
+// ============ study list ============
 function buildStudy() {
   const brands = state.scope === '__all' ? BRANDS : [state.scope];
-  $('study-title').textContent = state.scope === '__all' ? 'Study list — all brands' : state.scope + ' — models & trims';
-  $('study-body').innerHTML = brands.map(b => `
-    <div class="study-brand">
-      <h3>${esc(b)}</h3>
-      ${Object.entries(DATA[b]).map(([m, t]) => `<div class="study-row"><div class="m">${esc(m)}</div><div class="t">${t.map(esc).join(' · ')}</div></div>`).join('')}
-    </div>`).join('');
+  const feat = state.mode === 'features' || state.mode === 'match';
+  $('study-title').textContent = (state.scope === '__all' ? 'Study list — all 5 brands' : state.scope) + (feat ? ' · trim features' : ' · models & trims');
+  $('study-body').innerHTML = brands.map(b => {
+    if (feat && FEATURES[b]) {
+      return `<div class="study-brand"><h3>${esc(b)}</h3>${Object.entries(FEATURES[b]).map(([m, trims]) =>
+        Object.entries(trims).map(([t, fs]) => `<div class="study-row"><div class="m">${esc(m)} ${esc(t)}</div><div class="t">${fs.map(esc).join(' · ')}</div></div>`).join('')
+      ).join('')}</div>`;
+    }
+    return `<div class="study-brand"><h3>${esc(b)}</h3>${Object.entries(DATA[b]).map(([m, t]) => `<div class="study-row"><div class="m">${esc(m)}</div><div class="t">${t.map(esc).join(' · ')}</div></div>`).join('')}</div>`;
+  }).join('');
 }
 
-// ---- controls ----
+// ============ controls ============
 $('modes').addEventListener('click', e => {
   const b = e.target.closest('.mode-btn'); if (!b) return;
   [...document.querySelectorAll('.mode-btn')].forEach(x => x.classList.toggle('active', x === b));
   state.mode = b.dataset.mode;
-  state.queue = shuffle(state.pool); state.deck = shuffle(state.pool); state.di = 0; state.review = [];
-  render();
+  initRound(); buildStudy(); render();
 });
-$('scope').addEventListener('change', () => {
-  state.scope = $('scope').value;
-  buildPool(); buildStudy(); render();
-});
-$('restart').addEventListener('click', () => {
-  state.correct = 0; state.wrong = 0; state.streak = 0;
-  buildPool(); updateStats(); render();
-});
+$('scope').addEventListener('change', () => { state.scope = $('scope').value; initRound(); buildStudy(); render(); });
+$('restart').addEventListener('click', () => { state.correct = 0; state.wrong = 0; state.streak = 0; initRound(); updateStats(); render(); });
 $('toggleStudy').addEventListener('click', () => {
   const s = $('study'); s.classList.toggle('hidden');
   $('toggleStudy').textContent = s.classList.contains('hidden') ? 'Study list' : 'Hide study list';
 });
 
-// keyboard
 document.addEventListener('keydown', e => {
-  if (state.mode === 'flash') {
+  if (FLASH_MODES.includes(state.mode)) {
     if (e.key === ' ' || e.key === 'Enter') {
       e.preventDefault();
-      if ($('fc-reveal') && !$('fc-reveal-wrap').classList.contains('hidden')) revealFlash();
+      if ($('fc-reveal-wrap') && !$('fc-reveal-wrap').classList.contains('hidden')) revealFlash();
       else if ($('fc-got')) $('fc-got').click();
-    } else if (e.key.toLowerCase() === 'r' && $('fc-review') && !$('fc-grade').classList.contains('hidden')) $('fc-review').click();
+    } else if (e.key.toLowerCase() === 'r' && $('fc-grade') && !$('fc-grade').classList.contains('hidden')) $('fc-review').click();
     return;
   }
   if (!state.answered && ['1', '2', '3', '4'].includes(e.key)) {
-    const opts = document.querySelectorAll('.opt');
-    const i = parseInt(e.key, 10) - 1; if (opts[i]) opts[i].click();
+    const opts = document.querySelectorAll('.opt'); const i = parseInt(e.key, 10) - 1; if (opts[i]) opts[i].click();
   } else if (state.answered && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); render(); }
 });
 
-// ---- init ----
-buildPool(); buildStudy(); updateStats(); render();
+// ============ init ============
+initRound(); buildStudy(); updateStats(); render();
 </script>
 
 </body>
